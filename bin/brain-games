@@ -2,4 +2,6 @@
 
 <?php
 
-echo "Welcome to the Brain games!\n";
+require_once "src/Cli";
+
+use Brain\Games\Cli;
