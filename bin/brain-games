@@ -2,6 +2,6 @@
 
 <?php
 
-require_once "src/Cli";
+require_once "/home/aktm/php-project-lvl1/src/Cli";
 
 use Brain\Games\Cli;
