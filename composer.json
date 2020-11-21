@@ -1,0 +1,16 @@
+{
+    "name": "hexlet/code",
+    "description": "Project #1",
+    "license": "FTL",
+    "type": "project",
+    "authors": [
+        {
+            "name": "aktm1982",
+            "email": "aktm@yandex.ru"
+        }
+    ],
+    "require": {},
+    "bin": [
+        "bin/brain-games"
+    ]
+}
