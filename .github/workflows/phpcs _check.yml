@@ -1,0 +1,13 @@
+name: PHP CodeSniffer check
+
+on: push
+
+jobs:
+  phpcs-check:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.phpcs_check }}
+    steps:
+    - id: step1
+      run: make lint
+
