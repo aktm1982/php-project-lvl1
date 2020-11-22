@@ -14,11 +14,13 @@
             "cli": "lib/"
         },
         "files": [
-            "lib/cli/cli.php"
+            "lib/cli/cli.php",
+            "src/Even/game.php"
         ]
     },
     "bin": [
-        "bin/brain-games"
+        "bin/brain-games",
+        "bin/brain-even"
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5"

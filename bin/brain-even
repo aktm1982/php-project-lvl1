@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function \cli\line;
+use function \cli\prompt;
+
+use \Brain\Even\Source;
+
+$userName = Source\setUser();
+
+$score = 0;
+$targetScore = 3;
+$continueGame = true;
+
+while($continueGame) {
+	$targetNumber = mt_rand(1,100);
+	line("Question: $targetNumber");
+	$userInput = trim(prompt('Your answer'));
+
+	$result = Source\checkUserInput($targetNumber, $userInput);
+	$score = Source\setScore($result, $score);
+	
+	if ($result) {
+		line('Correct!');
+	} else {
+		$rightAnswer = Source\getRightAnswer($targetNumber);
+		line("'$userInput' is wrong answer ;(. Correct answer was '$rightAnswer'.");
+		line("Let's try again, $userName!");
+		$continueGame = false;
+	}
+	
+	if ($score >= $targetScore) {
+		line("Congratulations, $userName!");
+		$continueGame = false;
+	}
+}
