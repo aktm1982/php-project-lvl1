@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function \cli\line;
+use function \cli\prompt;
+
+use \Brain\Game\Common;
+use \Brain\Game\Calc;
+
+$brainCalcData = ['score' => 0, 'targetScore' => 3];
+
+$brainCalcData['userName'] = Common\initializeGame();
+
+line('What is the result of the expression?');
+
+while($brainCalcData['score'] >= 0 && $brainCalcData['score'] < 3) {
+	
+	$result = Calc\getResult();
+	
+	$brainCalcData['score'] = Common\checkResult($result, $brainCalcData);
+}
