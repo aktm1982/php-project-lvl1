@@ -7,33 +7,18 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use function \cli\line;
 use function \cli\prompt;
 
-use \Brain\Even\Source;
+use \Brain\Game\Common;
+use \Brain\Game\Even;
 
-$userName = Source\setUser();
+$brainEvenData = ['score' => 0, 'targetScore' => 3];
 
-$score = 0;
-$targetScore = 3;
-$continueGame = true;
+$brainEvenData['userName'] = Common\initializeGame();
 
-while($continueGame) {
-	$targetNumber = mt_rand(1,100);
-	line("Question: $targetNumber");
-	$userInput = trim(prompt('Your answer'));
+line('Answer "yes" if the number is even, otherwise answer "no".');
 
-	$result = Source\checkUserInput($targetNumber, $userInput);
-	$score = Source\setScore($result, $score);
+while($brainEvenData['score'] >= 0 && $brainEvenData['score'] < 3) {
 	
-	if ($result) {
-		line('Correct!');
-	} else {
-		$rightAnswer = Source\getRightAnswer($targetNumber);
-		line("'$userInput' is wrong answer ;(. Correct answer was '$rightAnswer'.");
-		line("Let's try again, $userName!");
-		$continueGame = false;
-	}
+	$result = Even\getResult();
 	
-	if ($score >= $targetScore) {
-		line("Congratulations, $userName!");
-		$continueGame = false;
-	}
+	$brainEvenData['score'] = Common\checkResult($result, $brainEvenData);
 }

@@ -15,7 +15,8 @@
         },
         "files": [
             "lib/cli/cli.php",
-            "src/Even/game.php"
+            "src/Game/common.php",
+            "src/Game/even.php"
         ]
     },
     "bin": [
