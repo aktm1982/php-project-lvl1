@@ -3,7 +3,18 @@ name: phpcs-check
 on: push
 
 jobs:
-  phpcs-check:
+  initialize:
     runs-on: ubuntu-latest
+    
     steps:
-    - run: make lint
+    - name: git_clone_repo
+      uses: actions/checkout@v2
+  
+  check:
+    runs-on: ubuntu-latest
+    needs: initialize
+    
+    steps:
+    - name: phpcs_lint-check
+      run: make lint
+      
