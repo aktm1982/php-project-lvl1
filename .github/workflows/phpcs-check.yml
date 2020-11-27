@@ -7,14 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout
+      
     - name: git_clone_repo
-      uses: actions/checkout@v2
-  
-  check:
-    runs-on: ubuntu-latest
-    needs: initialize
-    
-    steps:
-    - name: phpcs_lint-check
       run: make lint
+
       
