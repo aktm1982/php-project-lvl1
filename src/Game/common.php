@@ -13,6 +13,11 @@ function initializeGame(): string
     return $userName;
 }
 
+function continueGame(int $score, int $initScore, int $targetScore): bool
+{
+    return $score >= $initScore && $score < $targetScore;
+}
+
 function checkResult(array $result, array $brainGameData): int
 {
     if ($result['isCorrect']) {

@@ -10,13 +10,13 @@ use function \cli\prompt;
 use \Brain\Game\Common;
 use \Brain\Game\Calc;
 
-$brainCalcData = ['score' => 0, 'targetScore' => 3];
+$brainCalcData = ['score' => 0, 'initScore' => 0, 'targetScore' => 3];
 
 $brainCalcData['userName'] = Common\initializeGame();
 
 line('What is the result of the expression?');
 
-while($brainCalcData['score'] >= 0 && $brainCalcData['score'] < 3) {
+while(Common\continueGame($brainCalcData['score'], $brainCalcData['initScore'], $brainCalcData['targetScore'])) {
 	
 	$result = Calc\getResult();
 	
