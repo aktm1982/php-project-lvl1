@@ -3,13 +3,18 @@ name: phpcs-check
 on: push
 
 jobs:
-  initialize:
+  initialize_n_check:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@master
+      - name: git_clone_repo
+        uses: actions/checkout@master
       
-    - name: git_clone_repo
-      run: make lint
+      - name: install_repo
+        run: make install
+  
+      - name: perform_check
+        run: make lint
+    
 
       
