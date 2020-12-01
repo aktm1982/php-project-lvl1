@@ -1,11 +1,11 @@
 install:
 	composer install
 brain-games:
-	./bin/brain-games
+	./bin/brain-games.php
 brain-even:
-	./bin/brain-even
+	./bin/brain-even.php
 brain-calc:
-	./bin/brain-calc
+	./bin/brain-calc.php
 validate:
 	composer validate
 lint:

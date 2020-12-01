@@ -17,13 +17,14 @@
             "lib/cli/cli.php",
             "src/Game/calc.php",
             "src/Game/common.php",
-            "src/Game/even.php"
+            "src/Game/even.php",
+            "src/Game/settings.php"
         ]
     },
     "bin": [
-        "bin/brain-games",
-        "bin/brain-even",
-        "bin/brain-calc"
+        "bin/brain-games.php",
+        "bin/brain-even.php",
+        "bin/brain-calc.php"
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5"
