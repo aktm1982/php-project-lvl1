@@ -8,5 +8,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 
 #asciinema link
-[![asciicast](https://asciinema.org/a/fTxa2I65utAq00QhSAyE7w5Mb.png)](https://asciinema.org/a/fTxa2I65utAq00QhSAyE7w5Mb)
-https://asciinema.org/a/6nmB8xtRN34SI8iXWs6kb66LF
+Brain-Even Game
+[![asciicast](https://asciinema.org/a/VPBhKxF6TZH0cYEZXWssdnq9Z.png)](https://asciinema.org/a/VPBhKxF6TZH0cYEZXWssdnq9Z)
+
+Brain-Calc Game
+[![asciicast](https://asciinema.org/a/yk1ZmRRWWJyDEDWL0JdFC8aBg.png)](https://asciinema.org/a/yk1ZmRRWWJyDEDWL0JdFC8aBg)
+
