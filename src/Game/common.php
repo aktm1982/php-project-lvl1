@@ -1,11 +1,17 @@
 <?php
+namespace Brain\Game;
 
-namespace Brain\Game\Common;
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE};
+
+use function Brain\Game\Calc\initGameData as initCalcGameData;
+use function Brain\Game\Even\initGameData as initEvenGameData;
 
 use function cli\line;
 use function cli\prompt;
 
-function initializeGame(): string
+function setUser(): string
 {
     line("Welcome to the Brain games!");
     $userName = prompt('May I have your name?');
@@ -13,25 +19,64 @@ function initializeGame(): string
     return $userName;
 }
 
-function continueGame(int $score, int $initScore, int $targetScore): bool
+function continueGame(int $score): bool
 {
-    return $score >= $initScore && $score < $targetScore;
+    return $score >= INIT_SCORE && $score < TARGET_SCORE;
 }
 
-function checkResult(array $result, array $brainGameData): int
+function generateNumber(): int
 {
-    if ($result['isCorrect']) {
+    return mt_rand(MIN_VALUE, MAX_VALUE);	
+}
+
+function getUserInput()
+{
+    do {
+        $result = trim(prompt('Your answer'));
+    } while (empty($result));
+    
+    return $result;
+}  
+
+function initGameData(string $GameType): array
+{
+    switch($GameType) {
+        case "BrainCalc":
+            return initCalcGameData();
+        case "BrainEven":
+            return initEvenGameData();
+    }
+}
+
+function checkResult(array $gameData, $gameResult): int
+{
+    if ($gameResult['isCorrect']) {
         line('Correct!');
-        $brainGameData['score'] += 1;
+        $gameData['score'] += 1;
+        if ($gameData['score'] >= TARGET_SCORE) {
+            line("Congratulations, {$gameData['user']}!");
+        }
     } else {
-        line("'{$result['userInput']}' is wrong answer ;(. Correct answer was '{$result['correctAnswer']}'.");
-        line("Let's try again, {$brainGameData['userName']}!");
-        $brainGameData['score'] = -1;
+        line("'{$gameResult['userInput']}' is wrong answer ;(. Correct answer was '{$gameResult['correctAnswer']}'.");
+        line("Let's try again, {$gameData['user']}!");
+        $gameData['score'] = -1;
     }
 
-    if ($brainGameData['score'] >= $brainGameData['targetScore']) {
-        line("Congratulations, {$brainGameData['userName']}!");
-    }
+    return $gameData['score'];
+}
 
-    return $brainGameData['score'];
+function playGame(string $GameType)
+{
+    $gameData = initGameData($GameType);
+    $gameData['user'] = setUser();
+    $gameData['score'] = INIT_SCORE;
+    
+    line($gameData['getInstructions']());
+    
+    $gameResult = [];
+    
+    while(continueGame($gameData['score'])) {
+        $gameResult = $gameData['getResult']();
+        $gameData['score'] = checkResult($gameData, $gameResult);
+    }
 }
