@@ -7,12 +7,14 @@
 ### CodeClimate status
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 
-#asciinema link
 Brain-Even Game
 [![asciicast](https://asciinema.org/a/VPBhKxF6TZH0cYEZXWssdnq9Z.png)](https://asciinema.org/a/VPBhKxF6TZH0cYEZXWssdnq9Z)
 
 Brain-Calc Game
 [![asciicast](https://asciinema.org/a/yk1ZmRRWWJyDEDWL0JdFC8aBg.png)](https://asciinema.org/a/yk1ZmRRWWJyDEDWL0JdFC8aBg)
 
-Brain_GCD game
+Brain-CD game
 [![asciicast](https://asciinema.org/a/y4gCCQXtJWKxfbt1oGpuzm8mC.png)](https://asciinema.org/a/y4gCCQXtJWKxfbt1oGpuzm8mC)
+
+Brain-Progression game
+[![asciicast](https://https://asciinema.org/a/588SvwAGagXWvXLqYptZ8Jvi4.png)](https://asciinema.org/a/588SvwAGagXWvXLqYptZ8Jvi4)
