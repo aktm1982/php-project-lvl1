@@ -18,6 +18,7 @@
             "src/Game/calc.php",
             "src/Game/common.php",
             "src/Game/even.php",
+            "src/Game/gcd.php",
             "src/Game/settings.php"
         ]
     },

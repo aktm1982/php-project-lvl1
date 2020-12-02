@@ -13,5 +13,4 @@ if(file_exists($autoloadPath1)) {
 
 use function Brain\Game\playGame;
 
-playGame('BrainCalc');
-
+playGame('BrainGcd');
