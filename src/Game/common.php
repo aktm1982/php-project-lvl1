@@ -1,12 +1,11 @@
 <?php
 namespace Brain\Game;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-
 use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE};
 
 use function Brain\Game\Calc\initGameData as initCalcGameData;
 use function Brain\Game\Even\initGameData as initEvenGameData;
+use function Brain\Game\Gcd\initGameData as initGcdGameData;
 
 use function cli\line;
 use function cli\prompt;
@@ -26,7 +25,7 @@ function continueGame(int $score): bool
 
 function generateNumber(): int
 {
-    return mt_rand(MIN_VALUE, MAX_VALUE);	
+    return rand(MIN_VALUE, MAX_VALUE);	
 }
 
 function getUserInput()
@@ -45,6 +44,8 @@ function initGameData(string $GameType): array
             return initCalcGameData();
         case "BrainEven":
             return initEvenGameData();
+        case "BrainGcd":
+            return initGcdGameData();
     }
 }
 
