@@ -8,6 +8,8 @@ brain-calc:
 	./bin/brain-calc.php
 brain-gcd:
 	./bin/brain-gcd.php
+brain-progression:
+	./bin/brain-progression.php
 validate:
 	composer validate
 lint:

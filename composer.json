@@ -19,6 +19,7 @@
             "src/Game/common.php",
             "src/Game/even.php",
             "src/Game/gcd.php",
+            "src/Game/progression.php",
             "src/Game/settings.php"
         ]
     },

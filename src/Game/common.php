@@ -6,6 +6,7 @@ use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE};
 use function Brain\Game\Calc\initGameData as initCalcGameData;
 use function Brain\Game\Even\initGameData as initEvenGameData;
 use function Brain\Game\Gcd\initGameData as initGcdGameData;
+use function Brain\Game\Progression\initGameData as initProgressionGameData;
 
 use function cli\line;
 use function cli\prompt;
@@ -46,6 +47,8 @@ function initGameData(string $GameType): array
             return initEvenGameData();
         case "BrainGcd":
             return initGcdGameData();
+        case "BrainProgression":
+            return initProgressionGameData();
     }
 }
 
