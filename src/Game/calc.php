@@ -2,6 +2,8 @@
 
 namespace Brain\Game\Calc;
 
+use Brain\Game;
+
 use const Brain\Game\Settings\{OPERATORS, MESSAGE};
 
 use function Brain\Game\{showMessage, getUserInput, generateNumber};
@@ -17,27 +19,24 @@ function getCorrectAnswer(int $operand1, int $operand2, string $operator): int
     }
 }
 
-
 function initGame()
 {
-    $getInstructions = function()
-    {
+    $getInstructions = function () {
         return MESSAGE['calcInstructions'];
     };
     
-    $getResult = function()
-    {
+    $getResult = function () {
         $operand1 = generateNumber();
         $operand2 = generateNumber();
         $operator = generateOperator(OPERATORS);
-        
+
         showMessage(MESSAGE['question'], "$operand1 $operator $operand2");
-        
+
         $result = [];
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['correctAnswer'] = getCorrectAnswer($operand1, $operand2, $operator);
         $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
-    
+
         return $result;
     };
 
