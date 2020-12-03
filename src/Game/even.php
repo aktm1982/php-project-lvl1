@@ -2,11 +2,9 @@
 
 namespace Brain\Game\Even;
 
-use Brain\Game;
+use function Brain\Game\{showMessage, getUserInput, generateNumber, getAnswerAsWord};
 
 use const Brain\Game\Settings\MESSAGE;
-
-use function Brain\Game\{showMessage, getUserInput, generateNumber, getAnswerAsWord};
 
 function initGame()
 {
@@ -23,7 +21,7 @@ function initGame()
         showMessage(MESSAGE['question'], $targetNumber);
 
         $result = [];
-        $result['userInput'] = getUserInput(MESSAGE['prompt']);        
+        $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['correctAnswer'] = getAnswerAsWord($targetNumber, $isEven);
         $result['isCorrect'] = $result['userInput'] === $result['correctAnswer'];
 

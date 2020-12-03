@@ -2,12 +2,10 @@
 
 namespace Brain\Game\Calc;
 
-use Brain\Game;
-
-use const Brain\Game\Settings\{OPERATORS, MESSAGE};
-
 use function Brain\Game\{showMessage, getUserInput, generateNumber};
 use function Brain\Game\generateItemFromList as generateOperator;
+
+use const Brain\Game\Settings\{OPERATORS, MESSAGE};
 
 function getCorrectAnswer(int $operand1, int $operand2, string $operator): int
 {
@@ -24,7 +22,7 @@ function initGame()
     $getInstructions = function () {
         return MESSAGE['calcInstructions'];
     };
-    
+
     $getResult = function () {
         $operand1 = generateNumber();
         $operand2 = generateNumber();
