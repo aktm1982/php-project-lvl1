@@ -1,22 +1,38 @@
 <?php
 namespace Brain\Game;
 
-use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE};
+use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE, MESSAGE};
 
-use function Brain\Game\Calc\initGameData as initCalcGameData;
-use function Brain\Game\Even\initGameData as initEvenGameData;
-use function Brain\Game\Gcd\initGameData as initGcdGameData;
-use function Brain\Game\Progression\initGameData as initProgressionGameData;
+use function Brain\Game\Calc\initGame as initCalcGame;
+use function Brain\Game\Even\initGame as initEvenGame;
+use function Brain\Game\Gcd\initGame as initGcdGame;
+use function Brain\Game\Prime\initGame as initPrimeGame;
+use function Brain\Game\Progression\initGame as initProgressionGame;
 
 use function cli\line;
 use function cli\prompt;
 
+function showMessage(string $message, ...$args)
+{
+    line($message, ...$args);
+}
+
+function getUserInput($promptComment = null)
+{
+    do {
+        $result = trim(prompt($promptComment));
+    } while (empty($result));
+    
+    return $result;
+}
+
 function setUser(): string
 {
-    line("Welcome to the Brain games!");
-    $userName = prompt('May I have your name?');
-    line("Hello, %s!", $userName);
-    return $userName;
+    showMessage(MESSAGE['welcome']);
+    $user = getUserInput('May I have your name?');
+    showMessage(MESSAGE['hello'], $user);
+    
+    return $user;
 }
 
 function continueGame(int $score): bool
@@ -29,58 +45,75 @@ function generateNumber(): int
     return rand(MIN_VALUE, MAX_VALUE);	
 }
 
-function getUserInput()
-{
-    do {
-        $result = trim(prompt('Your answer'));
-    } while (empty($result));
-    
-    return $result;
-}  
 
-function initGameData(string $GameType): array
+function generateItemFromList($itemList)
+{
+    return $itemList[mt_rand(0, count($itemList) - 1)];
+}
+
+function getAnswerAsWord(int $number, callable $callback)
+{
+    if($callback($number)) {
+        return 'yes';
+    }
+    
+    return 'no';
+} 
+
+function initGame(string $GameType): array
 {
     switch($GameType) {
         case "BrainCalc":
-            return initCalcGameData();
+            return initCalcGame();
         case "BrainEven":
-            return initEvenGameData();
+            return initEvenGame();
         case "BrainGcd":
-            return initGcdGameData();
+            return initGcdGame();
+        case "BrainPrime":
+            return initPrimeGame();
         case "BrainProgression":
-            return initProgressionGameData();
+            return initProgressionGame();
     }
 }
 
-function checkResult(array $gameData, $gameResult): int
+function setScore(int $score, bool $correct): int
 {
+    if($correct) {
+        return $score += 1;
+    }
+    
+    return $score = -1;
+}
+
+function checkResult(string $user, int $score, $gameResult): int
+{
+    $score = setScore($score, $gameResult['isCorrect']);
+    
     if ($gameResult['isCorrect']) {
-        line('Correct!');
-        $gameData['score'] += 1;
-        if ($gameData['score'] >= TARGET_SCORE) {
-            line("Congratulations, {$gameData['user']}!");
+        showMessage(MESSAGE['correct']);
+        if ($score >= TARGET_SCORE) {
+            showMessage(MESSAGE['congrats'], $user);
         }
     } else {
-        line("'{$gameResult['userInput']}' is wrong answer ;(. Correct answer was '{$gameResult['correctAnswer']}'.");
-        line("Let's try again, {$gameData['user']}!");
-        $gameData['score'] = -1;
+        showMessage(MESSAGE['incorrect'], $gameResult['userInput'], $gameResult['correctAnswer']);
+        showMessage(MESSAGE['try'], $user);
     }
 
-    return $gameData['score'];
+    return $score;
 }
 
 function playGame(string $GameType)
 {
-    $gameData = initGameData($GameType);
-    $gameData['user'] = setUser();
-    $gameData['score'] = INIT_SCORE;
+    ['getInstructions' => $getInstructions, 'getResult' => $getResult] = initGame($GameType);
+    $user = setUser();
+    $score = INIT_SCORE;
     
-    line($gameData['getInstructions']());
+    line($getInstructions());
     
     $gameResult = [];
     
-    while(continueGame($gameData['score'])) {
-        $gameResult = $gameData['getResult']();
-        $gameData['score'] = checkResult($gameData, $gameResult);
+    while(continueGame($score)) {
+        $gameResult = $getResult();
+        $score = checkResult($user, $score, $gameResult);
     }
 }

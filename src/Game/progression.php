@@ -2,55 +2,57 @@
 
 namespace Brain\Game\Progression;
 
-use const Brain\Game\Settings\{PROGRESSION_MIN_SIZE, PROGRESSION_MAX_SIZE, STEP_MIN_SIZE, STEP_MAX_SIZE};
+use const Brain\Game\Settings\{MESSAGE, PROGRESSION_SIZE, PROGRESSION_STEP};
+use function Brain\Game\{showMessage, getUserInput, generateNumber, generateItemFromList};
 
-use function cli\line;
-use function cli\prompt;
-use function Brain\Game\generateNumber;
-use function Brain\Game\getUserInput;
-
-function getRandomProgression($minSize, $maxSize, $minStep, $maxStep) : array
+function getRandomProgression() : array
 {
-    $progressionSize = mt_rand($minSize, $maxSize);
+    $progressionSize = generateItemFromList(PROGRESSION_SIZE);
+    $progressionStep = generateItemFromList(PROGRESSION_STEP);
+    
     $initValue = generateNumber();
-    $stepSize = mt_rand($minStep, $maxStep);
     
-    $progression = [];
+    $progression = range($initValue, $initValue + ($progressionSize - 1) * $progressionStep, $progressionStep);
     
-    for($i = 0; $i < $progressionSize; $i++)
-    {
-        $progression[$i] = $initValue + $stepSize * $i;
-    }
-    
-    $reversed = mt_rand(0,1);
-    if($reversed) {
+    if($reversed = mt_rand(0,1)) {
         $progression = array_reverse($progression);
     }
     
     return $progression;
 }
 
-function initGameData()
+function getRandomElement($progression)
+{
+    return generateItemFromList($progression);
+}
+
+function getShownProgression($progression, $element)
+{
+    $index = array_search($element, $progression);
+    $progression[$index] = '..';
+    
+    return $progression;
+}
+
+function initGame()
 {
     $getInstructions = function()
     {
-        return 'What number is missing in the progression?';
+        return MESSAGE['progressionInstructions'];
     };
     
     $getResult = function()
     {
+        $progression = getRandomProgression();
+        
         $result = [];
+        $result['correctAnswer'] = getRandomElement($progression);
         
-        $progression = getRandomProgression(PROGRESSION_MIN_SIZE, PROGRESSION_MAX_SIZE, STEP_MIN_SIZE, STEP_MAX_SIZE);
-         
-        $targetIndex = mt_rand(0, count($progression) - 1);
-        $result['correctAnswer'] = $progression[$targetIndex];
-        $progression[$targetIndex] = '..';
-        $shownProgression = implode($progression, ", ");
+        $shownProgression = getShownProgression($progression, $result['correctAnswer']);
         
-        line("Question: $shownProgression");
+        showMessage(MESSAGE['question'], implode($shownProgression, ", "));
         
-        $result['userInput'] = getUserInput();
+        $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
     
         return $result;

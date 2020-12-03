@@ -20,6 +20,7 @@
             "src/Game/even.php",
             "src/Game/gcd.php",
             "src/Game/progression.php",
+            "src/Game/prime.php",
             "src/Game/settings.php"
         ]
     },

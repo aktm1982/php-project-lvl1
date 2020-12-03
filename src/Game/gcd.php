@@ -2,36 +2,29 @@
 
 namespace Brain\Game\Gcd;
 
-use function cli\line;
-use function cli\prompt;
-use function Brain\Game\getUserInput;
+use const Brain\Game\Settings\{MESSAGE, SIMPLE_NUMS};
+use function Brain\Game\{showMessage, getUserInput, generateItemFromList};
 
-function initGameData()
+function initGame()
 {
     $getInstructions = function()
     {
-        return 'Find the greates common divisor of given numbers';
+        return MESSAGE['gcdInstructions'];
     };
     
     $getResult = function()
     {
-        $simpleNums = [2,3,5,7,11];
-        $simpleNumsMaxIndex = count($simpleNums) - 1;
-        
         $result = [];
+        $result['correctAnswer'] = generateItemFromList(SIMPLE_NUMS);
         
-        $indexOfCorrectAnswer = mt_rand(0, $simpleNumsMaxIndex);
-        $result['correctAnswer'] = $simpleNums[$indexOfCorrectAnswer];
+        $correctIndex = array_search($result['correctAnswer'], SIMPLE_NUMS);
+        $restOfList = array_slice(SIMPLE_NUMS, $correctIndex);
+        $shownNumber1 = $result['correctAnswer'] * generateItemFromList($restOfList); 
+        $shownNumber2 = $result['correctAnswer'] * generateItemFromList($restOfList);
         
-        $indexOfMultiplyer1 = rand($indexOfCorrectAnswer, $simpleNumsMaxIndex);
-        $shownNumber1 = $result['correctAnswer'] * $simpleNums[$indexOfMultiplyer1];
-        
-        $indexOfMultiplyer2 = mt_rand($indexOfCorrectAnswer, $simpleNumsMaxIndex);
-        $shownNumber2 = $result['correctAnswer'] * $simpleNums[$indexOfMultiplyer2];
-        
-        line("Question: $shownNumber1 $shownNumber2");
+        showMessage(MESSAGE['question'], "$shownNumber1 $shownNumber2");
        
-        $result['userInput'] = getUserInput();        
+        $result['userInput'] = getUserInput(MESSAGE['prompt']);        
         $result['isCorrect'] = $result['userInput'] == (string)$result['correctAnswer'];
         
         return $result;
