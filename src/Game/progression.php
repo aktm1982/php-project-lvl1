@@ -2,13 +2,11 @@
 
 namespace Brain\Game\Progression;
 
-use Brain\Game;
+use function Brain\Game\{showMessage, getUserInput, generateNumber, generateItemFromList};
 
 use const Brain\Game\Settings\{MESSAGE, PROGRESSION_SIZE, PROGRESSION_STEP};
 
-use function Brain\Game\{showMessage, getUserInput, generateNumber, generateItemFromList};
-
-function getRandomProgression() : array
+function getRandomProgression(): array
 {
     $progressionSize = generateItemFromList(PROGRESSION_SIZE);
     $progressionStep = generateItemFromList(PROGRESSION_STEP);
@@ -17,7 +15,7 @@ function getRandomProgression() : array
 
     $progression = range($initValue, $initValue + ($progressionSize - 1) * $progressionStep, $progressionStep);
 
-    if($reversed = mt_rand(0,1)) {
+    if ($reversed = mt_rand(0, 1)) {
         $progression = array_reverse($progression);
     }
 

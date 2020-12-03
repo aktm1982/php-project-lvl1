@@ -1,21 +1,16 @@
 <?php
+
 namespace Brain\Game;
 
-use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE, MESSAGE};
-
 use function Brain\Game\Calc\initGame as initCalcGame;
-
 use function Brain\Game\Even\initGame as initEvenGame;
-
 use function Brain\Game\Gcd\initGame as initGcdGame;
-
 use function Brain\Game\Prime\initGame as initPrimeGame;
-
 use function Brain\Game\Progression\initGame as initProgressionGame;
-
 use function cli\line;
-
 use function cli\prompt;
+
+use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE, MESSAGE};
 
 function showMessage(string $message, ...$args)
 {
@@ -47,9 +42,8 @@ function continueGame(int $score): bool
 
 function generateNumber(): int
 {
-    return rand(MIN_VALUE, MAX_VALUE);	
+    return rand(MIN_VALUE, MAX_VALUE);
 }
-
 
 function generateItemFromList($itemList)
 {
@@ -58,16 +52,16 @@ function generateItemFromList($itemList)
 
 function getAnswerAsWord(int $number, callable $callback)
 {
-    if($callback($number)) {
+    if ($callback($number)) {
         return 'yes';
     }
 
     return 'no';
-} 
+}
 
 function initGame(string $GameType): array
 {
-    switch($GameType) {
+    switch ($GameType) {
         case "BrainCalc":
             return initCalcGame();
         case "BrainEven":
@@ -83,7 +77,7 @@ function initGame(string $GameType): array
 
 function setScore(int $score, bool $correct): int
 {
-    if($correct) {
+    if ($correct) {
         return $score += 1;
     }
 
@@ -117,7 +111,7 @@ function playGame(string $GameType)
 
     $gameResult = [];
 
-    while(continueGame($score)) {
+    while (continueGame($score)) {
         $gameResult = $getResult();
         $score = checkResult($user, $score, $gameResult);
     }

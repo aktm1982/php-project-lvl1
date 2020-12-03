@@ -2,29 +2,28 @@
 
 namespace Brain\Game\Gcd;
 
-use Brain\Game;
+use function Brain\Game\{showMessage, getUserInput, generateItemFromList};
 
 use const Brain\Game\Settings\{MESSAGE, SIMPLE_NUMS};
-use function Brain\Game\{showMessage, getUserInput, generateItemFromList};
 
 function initGame()
 {
-    $getInstructions = function() {
+    $getInstructions = function () {
         return MESSAGE['gcdInstructions'];
     };
 
-    $getResult = function() {
+    $getResult = function () {
         $result = [];
         $result['correctAnswer'] = generateItemFromList(SIMPLE_NUMS);
 
         $correctIndex = array_search($result['correctAnswer'], SIMPLE_NUMS);
         $restOfList = array_slice(SIMPLE_NUMS, $correctIndex);
-        $shownNumber1 = $result['correctAnswer'] * generateItemFromList($restOfList); 
+        $shownNumber1 = $result['correctAnswer'] * generateItemFromList($restOfList);
         $shownNumber2 = $result['correctAnswer'] * generateItemFromList($restOfList);
 
         showMessage(MESSAGE['question'], "$shownNumber1 $shownNumber2");
 
-        $result['userInput'] = getUserInput(MESSAGE['prompt']);        
+        $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['isCorrect'] = $result['userInput'] == (string)$result['correctAnswer'];
 
         return $result;
