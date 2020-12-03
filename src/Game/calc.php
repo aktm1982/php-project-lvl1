@@ -2,12 +2,10 @@
 
 namespace Brain\Game\Calc;
 
-use const Brain\Game\Settings\OPERATORS;
+use const Brain\Game\Settings\{OPERATORS, MESSAGE};
 
-use function cli\line;
-use function cli\prompt;
-use function Brain\Game\generateNumber;
-use function Brain\Game\getUserInput;
+use function Brain\Game\{showMessage, getUserInput, generateNumber};
+use function Brain\Game\generateItemFromList as generateOperator;
 
 function getCorrectAnswer(int $operand1, int $operand2, string $operator): int
 {
@@ -19,25 +17,24 @@ function getCorrectAnswer(int $operand1, int $operand2, string $operator): int
     }
 }
 
-function initGameData()
+
+function initGame()
 {
     $getInstructions = function()
     {
-        return 'What is the result of the expression?';
+        return MESSAGE['calcInstructions'];
     };
     
     $getResult = function()
     {
-        $result = [];
-        $operators = OPERATORS;
-        
         $operand1 = generateNumber();
         $operand2 = generateNumber();
-        $operator = $operators[mt_rand(0, count($operators) - 1)];
+        $operator = generateOperator(OPERATORS);
         
-        line("Question: $operand1 $operator $operand2");
+        showMessage(MESSAGE['question'], "$operand1 $operator $operand2");
         
-        $result['userInput'] = getUserInput();
+        $result = [];
+        $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['correctAnswer'] = getCorrectAnswer($operand1, $operand2, $operator);
         $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
     

@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Even;
+namespace Brain\Game\Prime;
 
 use const Brain\Game\Settings\MESSAGE;
 use function Brain\Game\{showMessage, getUserInput, generateNumber, getAnswerAsWord};
@@ -9,23 +9,30 @@ function initGame()
 {
     $getInstructions = function()
     {
-        return MESSAGE['evenInstructions'];
+        return MESSAGE['primeInstructions'];
     };
     
-    $isEven = function(int $number): bool
+    $isPrime = function(int $number): bool
     {
-        return $number % 2 === 0;
+        for($i = 2; $i < $number/2; $i++) {
+            if($number % $i === 0) {
+                return false;
+            }
+        }
+    
+        return true;
     };
     
-    $getResult = function() use ($isEven)
+    $getResult = function() use ($isPrime)
     {
+        $result = [];
         $targetNumber = generateNumber();
+        
         showMessage(MESSAGE['question'], $targetNumber);
         
-        $result = [];
+        $result['correctAnswer'] = getAnswerAsWord($targetNumber, $isPrime);
         $result['userInput'] = getUserInput(MESSAGE['prompt']);        
-        $result['correctAnswer'] = getAnswerAsWord($targetNumber, $isEven);
-        $result['isCorrect'] = $result['userInput'] === $result['correctAnswer'];
+        $result['isCorrect'] = $result['userInput'] == (string)$result['correctAnswer'];
         
         return $result;
     };
