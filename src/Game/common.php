@@ -7,8 +7,8 @@ use function Brain\Game\Even\initGame as initEvenGame;
 use function Brain\Game\Gcd\initGame as initGcdGame;
 use function Brain\Game\Prime\initGame as initPrimeGame;
 use function Brain\Game\Progression\initGame as initProgressionGame;
-use function cli\line;
-use function cli\prompt;
+use function \cli\line;
+use function \cli\prompt;
 
 use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE, MESSAGE};
 
@@ -20,7 +20,7 @@ function showMessage(string $message, ...$args)
 function getUserInput($promptComment = null)
 {
     do {
-        $result = trim(prompt($promptComment));
+        $result = prompt($promptComment);
     } while (empty($result));
 
     return $result;
