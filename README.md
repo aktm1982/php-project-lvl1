@@ -8,16 +8,16 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 
 Brain-Even Game
-[![asciicast](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.png)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17)
+[![asciicast](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.png)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium)
 
 Brain-Calc Game
-[![asciicast](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz.png)](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz?rows=17)
+[![asciicast](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz.png)](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz?rows=17&size=medium)
 
 Brain-GCD game
-[![asciicast](https://asciinema.org/a/RX0EYRbblt91yA4kRVJwnyfCL.png)](https://asciinema.org/a/RX0EYRbblt91yA4kRVJwnyfCL?rows=17)
+[![asciicast](https://asciinema.org/a/RX0EYRbblt91yA4kRVJwnyfCL.png)](https://asciinema.org/a/RX0EYRbblt91yA4kRVJwnyfCL?rows=17&size=medium)
 
 Brain-Progression game
-[![asciicast](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.png)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17)
+[![asciicast](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.png)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17&size=medium)
 
 Brain-Prime game
-[![asciicast](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox.png)](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox?rows=17)
+[![asciicast](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox.png)](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox?rows=17&size=medium)
