@@ -1,15 +1,15 @@
 install:
 	composer install
 brain-calc:
-	./bin/brain-calc.php
+	./bin/brain-calc
 brain-even:
-	./bin/brain-even.php
+	./bin/brain-even
 brain-gcd:
-	./bin/brain-gcd.php
+	./bin/brain-gcd
 brain-prime:
-	./bin/brain-prime.php
+	./bin/brain-prime
 brain-progression:
-	./bin/brain-progression.php
+	./bin/brain-progression
 validate:
 	composer validate
 lint:
