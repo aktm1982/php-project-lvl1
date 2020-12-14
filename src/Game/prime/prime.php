@@ -2,16 +2,24 @@
 
 namespace Brain\Game\Prime;
 
-use function Brain\Game\{showMessage, getUserInput, generateNumber, getAnswerAsWord};
+use function Brain\Game\Engine\runGame;
+use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
 
+use const Brain\Game\Prime\Settings\INSTRUCTIONS;
 use const Brain\Game\Settings\MESSAGE;
 
-function initGame()
-{
-    $getInstructions = function () {
-        return MESSAGE['primeInstructions'];
-    };
 
+function initGame()
+{ 
+    function getAnswerAsWord(int $number, callable $callback)
+    {
+        if ($callback($number)) {
+            return 'yes';
+        }
+
+        return 'no';
+    }
+    
     $isPrime = function (int $number): bool {
         for ($i = 2; $i < $number / 2; $i++) {
             if ($number % $i === 0) {
@@ -34,9 +42,15 @@ function initGame()
 
         return $result;
     };
+    
+    $GameData['instructions'] = INSTRUCTIONS;
+    $GameData['getResult'] = $getResult;
+    
+    return $GameData;
+}
 
-    return [
-        'getInstructions' => $getInstructions,
-        'getResult' => $getResult
-    ];
+function play()
+{
+    $GameData = initGame();
+    runGame($GameData);
 }

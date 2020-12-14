@@ -11,13 +11,19 @@
     ],
     "autoload": {
         "files": [
-            "src/Game/calc.php",
-            "src/Game/common.php",
-            "src/Game/even.php",
-            "src/Game/gcd.php",
-            "src/Game/progression.php",
-            "src/Game/prime.php",
-            "src/Game/settings.php"
+            "src/Game/common/common.php",
+            "src/Game/common/engine.php",
+            "src/Game/common/settings.php",
+            "src/Game/calc/calc.php",
+            "src/Game/calc/settings.php",
+            "src/Game/even/even.php",
+            "src/Game/even/settings.php",
+            "src/Game/gcd/gcd.php",
+            "src/Game/gcd/settings.php",
+            "src/Game/prime/prime.php",
+            "src/Game/prime/settings.php",
+            "src/Game/progression/progression.php",
+            "src/Game/progression/settings.php"
         ]
     },
     "bin": [

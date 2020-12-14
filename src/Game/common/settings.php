@@ -8,13 +8,6 @@ const TARGET_SCORE         = 3;
 const MIN_VALUE            = 1;
 const MAX_VALUE            = 100;
 
-const OPERATORS            = ['+', '-'];
-
-const PROGRESSION_SIZE     = [5, 6, 7, 8, 9, 10];
-const PROGRESSION_STEP     = [2, 3, 4, 5];
-
-const SIMPLE_NUMS          = [2, 3, 5, 7, 11];
-
 const MESSAGE              = [
     'welcome' => 'Welcome to the Brain games!',
     'hello' => 'Hello, %s',
