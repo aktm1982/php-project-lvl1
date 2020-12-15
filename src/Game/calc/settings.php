@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Calc\Settings;
+namespace Brain\Game\Calc;
 
 const OPERATORS    = ['+', '-'];
 
