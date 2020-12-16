@@ -11,4 +11,6 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-Brain\Game\Gcd\play();
+use function Brain\Game\Gcd\play;
+
+play();

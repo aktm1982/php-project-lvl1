@@ -32,9 +32,9 @@ function continueGame(int $score): bool
     return $score >= INIT_SCORE && $score < TARGET_SCORE;
 }
 
-function generateNumber(): int
+function generateNumber($minValue, $maxValue): int
 {
-    return rand(MIN_VALUE, MAX_VALUE);
+    return rand($minValue, $maxValue);
 }
 
 function setScore(int $score, bool $correct): int

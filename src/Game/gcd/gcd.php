@@ -3,13 +3,13 @@
 namespace Brain\Game\Gcd;
 
 use function Brain\Game\Engine\runGame;
-use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
+use function Brain\Game\Common\{showMessage, getUserInput};
 
-use const Brain\Game\Gcd\Settings\{SIMPLE_NUMS, INSTRUCTIONS};
+use const Brain\Game\Gcd\{SIMPLE_NUMS, INSTRUCTIONS};
 use const Brain\Game\Settings\MESSAGE;
 
 function initGame()
-{ 
+{
     function generateNumberFromList($numbersList)
     {
         $index = mt_rand(0, count($numbersList) - 1);
@@ -32,10 +32,10 @@ function initGame()
 
         return $result;
     };
-    
+
     $GameData['getResult'] = $getResult;
     $GameData['instructions'] = INSTRUCTIONS;
-    
+
     return $GameData;
 }
 

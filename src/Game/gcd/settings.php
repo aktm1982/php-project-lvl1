@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Gcd\Settings;
+namespace Brain\Game\Gcd;
 
 const SIMPLE_NUMS  = [2, 3, 5, 7, 11];
 

@@ -5,12 +5,11 @@ namespace Brain\Game\Prime;
 use function Brain\Game\Engine\runGame;
 use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
 
-use const Brain\Game\Prime\Settings\INSTRUCTIONS;
+use const Brain\Game\Prime\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
 use const Brain\Game\Settings\MESSAGE;
 
-
 function initGame()
-{ 
+{
     function getAnswerAsWord(int $number, callable $callback)
     {
         if ($callback($number)) {
@@ -19,7 +18,7 @@ function initGame()
 
         return 'no';
     }
-    
+
     $isPrime = function (int $number): bool {
         for ($i = 2; $i < $number / 2; $i++) {
             if ($number % $i === 0) {
@@ -32,7 +31,7 @@ function initGame()
 
     $getResult = function () use ($isPrime) {
         $result = [];
-        $targetNumber = generateNumber();
+        $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
 
         showMessage(MESSAGE['question'], $targetNumber);
 
@@ -42,10 +41,10 @@ function initGame()
 
         return $result;
     };
-    
+
     $GameData['instructions'] = INSTRUCTIONS;
     $GameData['getResult'] = $getResult;
-    
+
     return $GameData;
 }
 

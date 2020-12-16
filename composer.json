@@ -10,13 +10,12 @@
         }
     ],
     "autoload": {
-        "psr-4":{
-            "Brain\\":"src/"
-        },
         "files": [
             "src/Game/common/common.php",
             "src/Game/common/engine.php",
             "src/Game/common/settings.php",
+            "src/Game/calc/calc.php",
+            "src/Game/calc/settings.php",
             "src/Game/even/even.php",
             "src/Game/even/settings.php",
             "src/Game/gcd/gcd.php",
