@@ -1,5 +1,7 @@
 install:
 	composer install
+brain-games:
+	./bin/brain-games
 brain-calc:
 	composer run-script brain-calc
 brain-even:

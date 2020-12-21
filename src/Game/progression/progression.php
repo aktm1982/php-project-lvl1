@@ -14,7 +14,6 @@ function initGame()
     {
         $index = mt_rand(0, count($numbersList) - 1);
         return $numbersList[$index];
-        
     }
 
     function getRandomProgression(): array
@@ -54,7 +53,7 @@ function initGame()
 
         $shownProgression = getShownProgression($progression, $result['correctAnswer']);
 
-        showMessage(MESSAGE['question'], implode($shownProgression, ", "));
+        showMessage(MESSAGE['question'], implode($shownProgression, " "));
 
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];

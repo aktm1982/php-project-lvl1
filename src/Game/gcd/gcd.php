@@ -18,7 +18,7 @@ function initGame()
                 $divs[] = $i;
             }
         }
-        
+
         return $divs;
     }
 

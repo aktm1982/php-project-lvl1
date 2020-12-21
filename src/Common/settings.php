@@ -6,7 +6,7 @@ const INIT_SCORE   = 0;
 const TARGET_SCORE = 3;
 
 const SCORE_STEP   = 1;
-const LOST_SCORE   = -1;          
+const LOST_SCORE   = -1;
 
 const MESSAGE      = [
     'welcome' => 'Welcome to the Brain games!',
