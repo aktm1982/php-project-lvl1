@@ -6,7 +6,7 @@ use function Brain\Common\Helpers\{setUser, showMessage, continueGame, checkResu
 
 use const Brain\Common\Settings\INIT_SCORE;
 
-function runGame(array $GameData)
+function runGame(array $GameData): void
 {
     $user = setUser();
     $score = INIT_SCORE;

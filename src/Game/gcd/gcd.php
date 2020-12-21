@@ -8,10 +8,9 @@ use function Brain\Common\Helpers\{showMessage, generateNumber, getUserInput};
 use const Brain\Game\Gcd\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
 use const Brain\Common\Settings\MESSAGE;
 
-function initGame()
+function initGame(): array
 {
-    function getDivs(int $num)
-    {
+    $getDivs = function (int $num): array {
         $divs = [];
         for ($i = 1; $i <= $num; $i++) {
             if ($num % $i === 0) {
@@ -20,14 +19,14 @@ function initGame()
         }
 
         return $divs;
-    }
+    };
 
-    $getRoundResult = function () {
+    $getRoundResult = function (): array {
         $number1 = generateNumber(MIN_VALUE, MAX_VALUE);
-        $divs1 = getDivs($number1);
+        $divs1 = $getDivs($number1);
 
         $number2 = generateNumber(MIN_VALUE, MAX_VALUE);
-        $divs2 = getDivs($number2);
+        $divs2 = $getDivs($number2);
 
         $result['correctAnswer'] = max(array_intersect($divs1, $divs2));
 
@@ -45,7 +44,7 @@ function initGame()
     return $GameData;
 }
 
-function play()
+function play(): void
 {
     $GameData = initGame();
     runGame($GameData);

@@ -4,12 +4,12 @@ namespace Brain\Common\Helpers;
 
 use const Brain\Common\Settings\{INIT_SCORE, TARGET_SCORE, SCORE_STEP, LOST_SCORE, MESSAGE};
 
-function showMessage(string $message, ...$args)
+function showMessage(string $message, string ...$args): void
 {
     \cli\line($message, ...$args);
 }
 
-function getUserInput($promptComment = null)
+function getUserInput(string $promptComment = null): string
 {
     do {
         $result = \cli\prompt($promptComment);
@@ -32,7 +32,7 @@ function continueGame(int $score): bool
     return $score >= INIT_SCORE && $score < TARGET_SCORE;
 }
 
-function generateNumber($minValue, $maxValue): int
+function generateNumber(int $minValue, int $maxValue): int
 {
     return rand($minValue, $maxValue);
 }
@@ -46,7 +46,7 @@ function setScore(int $score, bool $correct): int
     return $score = LOST_SCORE;
 }
 
-function checkResult(string $user, int $score, $roundResult): int
+function checkResult(string $user, int $score, array $roundResult): int
 {
     $score = setScore($score, $roundResult['isCorrect']);
 

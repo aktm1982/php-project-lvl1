@@ -8,16 +8,15 @@ use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 use const Brain\Game\Prime\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
 use const Brain\Common\Settings\MESSAGE;
 
-function initGame()
+function initGame(): array
 {
-    function getAnswerAsWord(int $number, callable $callback)
-    {
+    $getAnswerAsWord = function (int $number, callable $callback): string {
         if ($callback($number)) {
             return 'yes';
         }
 
         return 'no';
-    }
+    };
 
     $isPrime = function (int $number): bool {
         if ($number === 1) {
@@ -33,13 +32,13 @@ function initGame()
         return true;
     };
 
-    $getRoundResult = function () use ($isPrime) {
+    $getRoundResult = function () use ($isPrime): array {
         $result = [];
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
 
         showMessage(MESSAGE['question'], $targetNumber);
 
-        $result['correctAnswer'] = getAnswerAsWord($targetNumber, $isPrime);
+        $result['correctAnswer'] = $getAnswerAsWord($targetNumber, $isPrime);
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['isCorrect'] = $result['userInput'] == (string)$result['correctAnswer'];
 
@@ -52,7 +51,7 @@ function initGame()
     return $GameData;
 }
 
-function play()
+function play(): void
 {
     $GameData = initGame();
     runGame($GameData);

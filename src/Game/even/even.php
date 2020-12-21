@@ -8,16 +8,15 @@ use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 use const Brain\Game\Even\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
 use const Brain\Common\Settings\MESSAGE;
 
-function initGame()
+function initGame(): array
 {
-    function getAnswerAsWord(int $number, callable $callback)
-    {
+    $getAnswerAsWord = function (int $number, callable $callback): string {
         if ($callback($number)) {
             return 'yes';
         }
 
         return 'no';
-    }
+    };
 
     $isEven = function (int $number): bool {
         return $number % 2 === 0;
@@ -29,7 +28,7 @@ function initGame()
 
         $result = [];
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
-        $result['correctAnswer'] = getAnswerAsWord($targetNumber, $isEven);
+        $result['correctAnswer'] = $getAnswerAsWord($targetNumber, $isEven);
         $result['isCorrect'] = $result['userInput'] === $result['correctAnswer'];
 
         return $result;
@@ -41,7 +40,7 @@ function initGame()
     return $GameData;
 }
 
-function play()
+function play(): void
 {
     $GameData = initGame();
     runGame($GameData);

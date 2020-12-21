@@ -8,18 +8,16 @@ use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 use const Brain\Game\Progression\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS, PROGRESSION_SIZE, PROGRESSION_STEP};
 use const Brain\Common\Settings\MESSAGE;
 
-function initGame()
+function initGame(): array
 {
-    function generateNumberFromList($numbersList)
-    {
+    $generateNumberFromList = function (array $numbersList): int {
         $index = mt_rand(0, count($numbersList) - 1);
         return $numbersList[$index];
-    }
+    };
 
-    function getRandomProgression(): array
-    {
-        $progressionSize = generateNumberFromList(PROGRESSION_SIZE);
-        $progressionStep = generateNumberFromList(PROGRESSION_STEP);
+    $getRandomProgression = function (): array {
+        $progressionSize = $generateNumberFromList(PROGRESSION_SIZE);
+        $progressionStep = $generateNumberFromList(PROGRESSION_STEP);
 
         $initValue = generateNumber(MIN_VALUE, MAX_VALUE);
 
@@ -30,30 +28,28 @@ function initGame()
         }
 
         return $progression;
-    }
+    };
 
-    function getRandomElement($progression)
-    {
-        return generateNumberFromList($progression);
-    }
+    $getRandomElement = function (array $progression): int {
+        return $generateNumberFromList($progression);
+    };
 
-    function getShownProgression($progression, $element)
-    {
+    $getShownProgression = function (array $progression, int $element): array {
         $index = array_search($element, $progression);
         $progression[$index] = '..';
 
         return $progression;
-    }
+    };
 
-    $getRoundResult = function () {
-        $progression = getRandomProgression();
+    $getRoundResult = function (): array {
+        $progression = $getRandomProgression();
 
         $result = [];
-        $result['correctAnswer'] = getRandomElement($progression);
+        $result['correctAnswer'] = $getRandomElement($progression);
 
-        $shownProgression = getShownProgression($progression, $result['correctAnswer']);
+        $shownProgression = $getShownProgression($progression, $result['correctAnswer']);
 
-        showMessage(MESSAGE['question'], implode($shownProgression, " "));
+        showMessage(MESSAGE['question'], implode(" ", $shownProgression));
 
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
@@ -67,7 +63,7 @@ function initGame()
     return $GameData;
 }
 
-function play()
+function play(): void
 {
     $GameData = initGame();
     runGame($GameData);

@@ -10,32 +10,36 @@ use const Brain\Common\Settings\MESSAGE;
 
 function initGame(): array
 {
-    function generateOperatorFromList($operatorsList)
-    {
+    $generateOperatorFromList = function (array $operatorsList): string {
         $index = mt_rand(0, count($operatorsList) - 1);
         return $operatorsList[$index];
-    }
+    };
 
-    function getCorrectAnswer(int $operand1, int $operand2, string $operator): int
-    {
+    $getCorrectAnswer = function (int $operand1, int $operand2, string $operator): int {
+        $result = 0;
+
         switch ($operator) {
             case '+':
-                return $operand1 + $operand2;
+                $result = $operand1 + $operand2;
+                break;
             case '-':
-                return $operand1 - $operand2;
+                $result = $operand1 - $operand2;
+                break;
         }
-    }
 
-    $getRoundResult = function () {
+        return $result;
+    };
+
+    $getRoundResult = function (): array {
         $operand1 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operand2 = generateNumber(MIN_VALUE, MAX_VALUE);
-        $operator = generateOperatorFromList(OPERATORS);
+        $operator = $generateOperatorFromList(OPERATORS);
 
         showMessage(MESSAGE['question'], "$operand1 $operator $operand2");
 
         $result = [];
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
-        $result['correctAnswer'] = getCorrectAnswer($operand1, $operand2, $operator);
+        $result['correctAnswer'] = $getCorrectAnswer($operand1, $operand2, $operator);
         $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
 
         return $result;
@@ -47,7 +51,7 @@ function initGame(): array
     return $GameData;
 }
 
-function play()
+function play(): void
 {
     $GameData = initGame();
     runGame($GameData);
