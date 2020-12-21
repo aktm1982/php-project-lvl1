@@ -24,7 +24,7 @@ function initGame(): array
 
     $getRoundResult = function () use ($isEven, $getAnswerAsWord) {
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
-        showMessage(MESSAGE['question'], $targetNumber);
+        showMessage(MESSAGE['question'], (string)$targetNumber);
 
         $result = [];
         $result['userInput'] = getUserInput(MESSAGE['prompt']);

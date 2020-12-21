@@ -36,7 +36,7 @@ function initGame(): array
         $result = [];
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
 
-        showMessage(MESSAGE['question'], $targetNumber);
+        showMessage(MESSAGE['question'], (string)$targetNumber);
 
         $result['correctAnswer'] = $getAnswerAsWord($targetNumber, $isPrime);
         $result['userInput'] = getUserInput(MESSAGE['prompt']);

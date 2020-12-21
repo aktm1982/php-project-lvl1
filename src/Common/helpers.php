@@ -9,7 +9,7 @@ function showMessage(string $message, string ...$args): void
     \cli\line($message, ...$args);
 }
 
-function getUserInput(string $promptComment = null): string
+function getUserInput(string $promptComment = " "): string
 {
     do {
         $result = \cli\prompt($promptComment);
