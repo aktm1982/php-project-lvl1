@@ -11,11 +11,7 @@ function showMessage(string $message, string ...$args): void
 
 function getUserInput(string $promptComment = " "): string
 {
-    do {
-        $result = \cli\prompt($promptComment);
-    } while (empty($result));
-
-    return $result;
+    return \cli\prompt($promptComment);
 }
 
 function setUser(): string
