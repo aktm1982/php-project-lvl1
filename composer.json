@@ -11,9 +11,9 @@
     ],
     "autoload": {
         "files": [
-            "src/Game/common/common.php",
-            "src/Game/common/engine.php",
-            "src/Game/common/settings.php",
+            "src/Common/helpers.php",
+            "src/Common/engine.php",
+            "src/Common/settings.php",
             "src/Game/calc/calc.php",
             "src/Game/calc/settings.php",
             "src/Game/even/even.php",
@@ -38,7 +38,13 @@
         "squizlabs/php_codesniffer": "^3.5"
     },
     "scripts": {
-        "phpcs": "phpcs"
+        "phpcs": "phpcs",
+        "brain-calc": "brain-calc",
+        "brain-even": "brain-even",
+        "brain-games": "brain-games",
+        "brain-gcd": "brain-gcd",
+        "brain-prime": "brain-prime",
+        "brain-progression": "brain-progression"
     },
     "require": {
         "wp-cli/php-cli-tools": "^0.11.11"

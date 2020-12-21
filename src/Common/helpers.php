@@ -1,8 +1,8 @@
 <?php
 
-namespace Brain\Game\Common;
+namespace Brain\Common\Helpers;
 
-use const Brain\Game\Settings\{INIT_SCORE, TARGET_SCORE, MIN_VALUE, MAX_VALUE, MESSAGE};
+use const Brain\Common\Settings\{INIT_SCORE, TARGET_SCORE, SCORE_STEP, LOST_SCORE, MESSAGE};
 
 function showMessage(string $message, ...$args)
 {
@@ -40,23 +40,23 @@ function generateNumber($minValue, $maxValue): int
 function setScore(int $score, bool $correct): int
 {
     if ($correct) {
-        return $score += 1;
+        return $score += SCORE_STEP;
     }
 
-    return $score = -1;
+    return $score = LOST_SCORE;
 }
 
-function checkResult(string $user, int $score, $gameResult): int
+function checkResult(string $user, int $score, $roundResult): int
 {
-    $score = setScore($score, $gameResult['isCorrect']);
+    $score = setScore($score, $roundResult['isCorrect']);
 
-    if ($gameResult['isCorrect']) {
+    if ($roundResult['isCorrect']) {
         showMessage(MESSAGE['correct']);
         if ($score >= TARGET_SCORE) {
             showMessage(MESSAGE['congrats'], $user);
         }
     } else {
-        showMessage(MESSAGE['incorrect'], $gameResult['userInput'], $gameResult['correctAnswer']);
+        showMessage(MESSAGE['incorrect'], $roundResult['userInput'], $roundResult['correctAnswer']);
         showMessage(MESSAGE['try'], $user);
     }
 

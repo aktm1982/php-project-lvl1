@@ -2,30 +2,36 @@
 
 namespace Brain\Game\Gcd;
 
-use function Brain\Game\Engine\runGame;
-use function Brain\Game\Common\{showMessage, getUserInput};
+use function Brain\Common\Engine\runGame;
+use function Brain\Common\Helpers\{showMessage, generateNumber, getUserInput};
 
-use const Brain\Game\Gcd\{SIMPLE_NUMS, INSTRUCTIONS};
-use const Brain\Game\Settings\MESSAGE;
+use const Brain\Game\Gcd\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
+use const Brain\Common\Settings\MESSAGE;
 
 function initGame()
 {
-    function generateNumberFromList($numbersList)
+    function getDivs(int $num)
     {
-        $index = mt_rand(0, count($numbersList) - 1);
-        return $numbersList[$index];
+        $divs = [];
+        for ($i = 1; $i <= $num; $i++) {
+            if ($num % $i === 0) {
+                $divs[] = $i;
+            }
+        }
+        
+        return $divs;
     }
 
-    $getResult = function () {
-        $result = [];
-        $result['correctAnswer'] = generateNumberFromList(SIMPLE_NUMS);
+    $getRoundResult = function () {
+        $number1 = generateNumber(MIN_VALUE, MAX_VALUE);
+        $divs1 = getDivs($number1);
 
-        $correctIndex = array_search($result['correctAnswer'], SIMPLE_NUMS);
-        $restOfList = array_slice(SIMPLE_NUMS, $correctIndex);
-        $shownNumber1 = $result['correctAnswer'] * generateNumberFromList($restOfList);
-        $shownNumber2 = $result['correctAnswer'] * generateNumberFromList($restOfList);
+        $number2 = generateNumber(MIN_VALUE, MAX_VALUE);
+        $divs2 = getDivs($number2);
 
-        showMessage(MESSAGE['question'], "$shownNumber1 $shownNumber2");
+        $result['correctAnswer'] = max(array_intersect($divs1, $divs2));
+
+        showMessage(MESSAGE['question'], "$number1 $number2");
 
         $result['userInput'] = getUserInput(MESSAGE['prompt']);
         $result['isCorrect'] = $result['userInput'] == (string)$result['correctAnswer'];
@@ -33,7 +39,7 @@ function initGame()
         return $result;
     };
 
-    $GameData['getResult'] = $getResult;
+    $GameData['getRoundResult'] = $getRoundResult;
     $GameData['instructions'] = INSTRUCTIONS;
 
     return $GameData;

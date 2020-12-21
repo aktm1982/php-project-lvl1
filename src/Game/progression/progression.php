@@ -2,11 +2,11 @@
 
 namespace Brain\Game\Progression;
 
-use function Brain\Game\Engine\runGame;
-use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Engine\runGame;
+use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 
 use const Brain\Game\Progression\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS, PROGRESSION_SIZE, PROGRESSION_STEP};
-use const Brain\Game\Settings\MESSAGE;
+use const Brain\Common\Settings\MESSAGE;
 
 function initGame()
 {
@@ -14,6 +14,7 @@ function initGame()
     {
         $index = mt_rand(0, count($numbersList) - 1);
         return $numbersList[$index];
+        
     }
 
     function getRandomProgression(): array
@@ -45,7 +46,7 @@ function initGame()
         return $progression;
     }
 
-    $getResult = function () {
+    $getRoundResult = function () {
         $progression = getRandomProgression();
 
         $result = [];
@@ -61,7 +62,7 @@ function initGame()
         return $result;
     };
 
-    $GameData['getResult'] = $getResult;
+    $GameData['getRoundResult'] = $getRoundResult;
     $GameData['instructions'] = INSTRUCTIONS;
 
     return $GameData;

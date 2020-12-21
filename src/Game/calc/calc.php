@@ -2,11 +2,11 @@
 
 namespace Brain\Game\Calc;
 
-use function Brain\Game\Engine\runGame;
-use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Engine\runGame;
+use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 
 use const Brain\Game\Calc\{MIN_VALUE, MAX_VALUE, OPERATORS, INSTRUCTIONS};
-use const Brain\Game\Settings\MESSAGE;
+use const Brain\Common\Settings\MESSAGE;
 
 function initGame(): array
 {
@@ -26,7 +26,7 @@ function initGame(): array
         }
     }
 
-    $getResult = function () {
+    $getRoundResult = function () {
         $operand1 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operand2 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operator = generateOperatorFromList(OPERATORS);
@@ -41,7 +41,7 @@ function initGame(): array
         return $result;
     };
 
-    $GameData['getResult'] = $getResult;
+    $GameData['getRoundResult'] = $getRoundResult;
     $GameData['instructions'] = INSTRUCTIONS;
 
     return $GameData;

@@ -1,15 +1,15 @@
 install:
 	composer install
 brain-calc:
-	./bin/brain-calc
+	composer run-script brain-calc
 brain-even:
-	./bin/brain-even
+	composer run-script brain-even
 brain-gcd:
-	./bin/brain-gcd
+	composer run-script brain-gcd
 brain-prime:
-	./bin/brain-prime
+	composer run-script brain-prime
 brain-progression:
-	./bin/brain-progression
+	composer run-script brain-progression
 validate:
 	composer validate
 lint:

@@ -2,11 +2,11 @@
 
 namespace Brain\Game\Even;
 
-use function Brain\Game\Engine\runGame;
-use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Engine\runGame;
+use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 
 use const Brain\Game\Even\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
-use const Brain\Game\Settings\MESSAGE;
+use const Brain\Common\Settings\MESSAGE;
 
 function initGame()
 {
@@ -23,7 +23,7 @@ function initGame()
         return $number % 2 === 0;
     };
 
-    $getResult = function () use ($isEven) {
+    $getRoundResult = function () use ($isEven) {
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
         showMessage(MESSAGE['question'], $targetNumber);
 
@@ -35,7 +35,7 @@ function initGame()
         return $result;
     };
 
-    $GameData['getResult'] = $getResult;
+    $GameData['getRoundResult'] = $getRoundResult;
     $GameData['instructions'] = INSTRUCTIONS;
 
     return $GameData;

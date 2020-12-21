@@ -14,7 +14,7 @@ Brain-Calc Game
 [![asciicast](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz.png)](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz?rows=17&size=medium)
 
 Brain-GCD game
-[![asciicast](https://asciinema.org/a/RX0EYRbblt91yA4kRVJwnyfCL.png)](https://asciinema.org/a/RX0EYRbblt91yA4kRVJwnyfCL?rows=17&size=medium)
+[![asciicast](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw.png)](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw?rows=17&size=medium)
 
 Brain-Progression game
 [![asciicast](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.png)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17&size=medium)

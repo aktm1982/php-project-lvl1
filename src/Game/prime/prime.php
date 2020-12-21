@@ -2,11 +2,11 @@
 
 namespace Brain\Game\Prime;
 
-use function Brain\Game\Engine\runGame;
-use function Brain\Game\Common\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Engine\runGame;
+use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
 
 use const Brain\Game\Prime\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
-use const Brain\Game\Settings\MESSAGE;
+use const Brain\Common\Settings\MESSAGE;
 
 function initGame()
 {
@@ -29,7 +29,7 @@ function initGame()
         return true;
     };
 
-    $getResult = function () use ($isPrime) {
+    $getRoundResult = function () use ($isPrime) {
         $result = [];
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
 
@@ -43,7 +43,7 @@ function initGame()
     };
 
     $GameData['instructions'] = INSTRUCTIONS;
-    $GameData['getResult'] = $getResult;
+    $GameData['getRoundResult'] = $getRoundResult;
 
     return $GameData;
 }
