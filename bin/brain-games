@@ -11,6 +11,6 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use function cli\line;
+use function Brain\Games\Cli\setUser;
 
-line('Welcome to the Brain Games!');
+setUser();
