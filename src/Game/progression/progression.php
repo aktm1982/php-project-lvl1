@@ -15,7 +15,7 @@ function initGame(): array
         return $numbersList[$index];
     };
 
-    $getRandomProgression = function (): array {
+    $getRandomProgression = function () use ($generateNumberFromList): array {
         $progressionSize = $generateNumberFromList(PROGRESSION_SIZE);
         $progressionStep = $generateNumberFromList(PROGRESSION_STEP);
 
@@ -30,7 +30,7 @@ function initGame(): array
         return $progression;
     };
 
-    $getRandomElement = function (array $progression): int {
+    $getRandomElement = function (array $progression) use ($generateNumberFromList): int {
         return $generateNumberFromList($progression);
     };
 
@@ -41,7 +41,7 @@ function initGame(): array
         return $progression;
     };
 
-    $getRoundResult = function (): array {
+    $getRoundResult = function () use ($getRandomProgression, $getRandomElement, $getShownProgression): array {
         $progression = $getRandomProgression();
 
         $result = [];

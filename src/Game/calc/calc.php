@@ -30,7 +30,7 @@ function initGame(): array
         return $result;
     };
 
-    $getRoundResult = function (): array {
+    $getRoundResult = function () use ($generateOperatorFromList, $getCorrectAnswer): array {
         $operand1 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operand2 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operator = $generateOperatorFromList(OPERATORS);

@@ -22,7 +22,7 @@ function initGame(): array
         return $number % 2 === 0;
     };
 
-    $getRoundResult = function () use ($isEven) {
+    $getRoundResult = function () use ($isEven, $getAnswerAsWord) {
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
         showMessage(MESSAGE['question'], $targetNumber);
 

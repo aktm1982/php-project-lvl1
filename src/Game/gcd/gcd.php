@@ -21,7 +21,7 @@ function initGame(): array
         return $divs;
     };
 
-    $getRoundResult = function (): array {
+    $getRoundResult = function () use ($getDivs): array {
         $number1 = generateNumber(MIN_VALUE, MAX_VALUE);
         $divs1 = $getDivs($number1);
 

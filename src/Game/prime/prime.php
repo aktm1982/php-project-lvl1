@@ -32,7 +32,7 @@ function initGame(): array
         return true;
     };
 
-    $getRoundResult = function () use ($isPrime): array {
+    $getRoundResult = function () use ($getAnswerAsWord, $isPrime): array {
         $result = [];
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
 
