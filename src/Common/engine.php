@@ -2,19 +2,22 @@
 
 namespace Brain\Common\Engine;
 
-use function Brain\Common\Helpers\{setUser, showMessage, continueGame, checkResult};
+use function Brain\Common\Helpers\{setUser, showMessage, getUserInput, continueGame, checkResult};
 
-use const Brain\Common\Settings\INIT_SCORE;
+use const Brain\Common\Settings\{INIT_SCORE, MESSAGE};
 
-function runGame(array $GameData): void
+function runGame(array $gameData): void
 {
     $user = setUser();
     $score = INIT_SCORE;
 
-    showMessage($GameData['instructions']);
+    showMessage($gameData['instructions']);
 
     while (continueGame($score)) {
-        $roundResult = $GameData['getRoundResult']();
+        $roundResult['question'] = $gameData['makeQuestion']();
+        $roundResult['userInput'] = getUserInput(MESSAGE['prompt']);
+
+        $roundResult['isCorrect'] = $roundResult['question'] == $roundResult['userInput'];
         $score = checkResult($user, $score, $roundResult);
     }
 }

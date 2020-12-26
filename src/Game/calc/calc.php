@@ -3,7 +3,7 @@
 namespace Brain\Game\Calc;
 
 use function Brain\Common\Engine\runGame;
-use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Helpers\{showMessage, generateNumber};
 
 use const Brain\Game\Calc\{MIN_VALUE, MAX_VALUE, OPERATORS, INSTRUCTIONS};
 use const Brain\Common\Settings\MESSAGE;
@@ -30,29 +30,24 @@ function initGame(): array
         return $result;
     };
 
-    $getRoundResult = function () use ($generateOperatorFromList, $getCorrectAnswer): array {
+    $makeQuestion = function () use ($generateOperatorFromList, $getCorrectAnswer): int {
         $operand1 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operand2 = generateNumber(MIN_VALUE, MAX_VALUE);
         $operator = $generateOperatorFromList(OPERATORS);
 
         showMessage(MESSAGE['question'], "$operand1 $operator $operand2");
 
-        $result = [];
-        $result['userInput'] = getUserInput(MESSAGE['prompt']);
-        $result['correctAnswer'] = $getCorrectAnswer($operand1, $operand2, $operator);
-        $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
-
-        return $result;
+        return $getCorrectAnswer($operand1, $operand2, $operator);
     };
 
-    $GameData['getRoundResult'] = $getRoundResult;
-    $GameData['instructions'] = INSTRUCTIONS;
+    $gameData['makeQuestion'] = $makeQuestion;
+    $gameData['instructions'] = INSTRUCTIONS;
 
-    return $GameData;
+    return $gameData;
 }
 
 function play(): void
 {
-    $GameData = initGame();
-    runGame($GameData);
+    $gameData = initGame();
+    runGame($gameData);
 }

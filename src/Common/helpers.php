@@ -52,7 +52,7 @@ function checkResult(string $user, int $score, array $roundResult): int
             showMessage(MESSAGE['congrats'], $user);
         }
     } else {
-        showMessage(MESSAGE['incorrect'], $roundResult['userInput'], $roundResult['correctAnswer']);
+        showMessage(MESSAGE['incorrect'], $roundResult['userInput'], $roundResult['question']);
         showMessage(MESSAGE['try'], $user);
     }
 

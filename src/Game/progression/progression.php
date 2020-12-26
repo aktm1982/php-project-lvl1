@@ -3,7 +3,7 @@
 namespace Brain\Game\Progression;
 
 use function Brain\Common\Engine\runGame;
-use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Helpers\{showMessage, generateNumber};
 
 use const Brain\Game\Progression\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS, PROGRESSION_SIZE, PROGRESSION_STEP};
 use const Brain\Common\Settings\MESSAGE;
@@ -41,30 +41,24 @@ function initGame(): array
         return $progression;
     };
 
-    $getRoundResult = function () use ($getRandomProgression, $getRandomElement, $getShownProgression): array {
+    $makeQuestion = function () use ($getRandomProgression, $getRandomElement, $getShownProgression): int {
         $progression = $getRandomProgression();
-
-        $result = [];
-        $result['correctAnswer'] = $getRandomElement($progression);
-
-        $shownProgression = $getShownProgression($progression, $result['correctAnswer']);
+        $targetNumber = $getRandomElement($progression);
+        $shownProgression = $getShownProgression($progression, $targetNumber);
 
         showMessage(MESSAGE['question'], implode(" ", $shownProgression));
 
-        $result['userInput'] = getUserInput(MESSAGE['prompt']);
-        $result['isCorrect'] = $result['userInput'] == $result['correctAnswer'];
-
-        return $result;
+        return $targetNumber;
     };
 
-    $GameData['getRoundResult'] = $getRoundResult;
-    $GameData['instructions'] = INSTRUCTIONS;
+    $gameData['makeQuestion'] = $makeQuestion;
+    $gameData['instructions'] = INSTRUCTIONS;
 
-    return $GameData;
+    return $gameData;
 }
 
 function play(): void
 {
-    $GameData = initGame();
-    runGame($GameData);
+    $gameData = initGame();
+    runGame($gameData);
 }

@@ -3,7 +3,7 @@
 namespace Brain\Game\Prime;
 
 use function Brain\Common\Engine\runGame;
-use function Brain\Common\Helpers\{showMessage, getUserInput, generateNumber};
+use function Brain\Common\Helpers\{showMessage, generateNumber};
 
 use const Brain\Game\Prime\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
 use const Brain\Common\Settings\MESSAGE;
@@ -32,27 +32,22 @@ function initGame(): array
         return true;
     };
 
-    $getRoundResult = function () use ($getAnswerAsWord, $isPrime): array {
-        $result = [];
+    $makeQuestion = function () use ($getAnswerAsWord, $isPrime): string {
         $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
 
         showMessage(MESSAGE['question'], (string)$targetNumber);
 
-        $result['correctAnswer'] = $getAnswerAsWord($targetNumber, $isPrime);
-        $result['userInput'] = getUserInput(MESSAGE['prompt']);
-        $result['isCorrect'] = $result['userInput'] == (string)$result['correctAnswer'];
-
-        return $result;
+        return $getAnswerAsWord($targetNumber, $isPrime);
     };
 
-    $GameData['instructions'] = INSTRUCTIONS;
-    $GameData['getRoundResult'] = $getRoundResult;
+    $gameData['makeQuestion'] = $makeQuestion;
+    $gameData['instructions'] = INSTRUCTIONS;
 
-    return $GameData;
+    return $gameData;
 }
 
 function play(): void
 {
-    $GameData = initGame();
-    runGame($GameData);
+    $gameData = initGame();
+    runGame($gameData);
 }

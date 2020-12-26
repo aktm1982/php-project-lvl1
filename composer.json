@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "files": [
-            "src/Cli",
+            "src/Cli.php",
             "src/Common/helpers.php",
             "src/Common/engine.php",
             "src/Common/settings.php",
