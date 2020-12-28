@@ -3,21 +3,23 @@
 namespace Brain\Game\Prime;
 
 use function Brain\Common\Engine\runGame;
-use function Brain\Common\Helpers\{showMessage, generateNumber};
 
-use const Brain\Game\Prime\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS};
 use const Brain\Common\Settings\MESSAGE;
 
 function initGame(): array
 {
-    $getAnswerAsWord = function (int $number, callable $callback): string {
-        if ($callback($number)) {
-            return 'yes';
-        }
-
-        return 'no';
+    $getQuestionData = function (): array {
+        $questionData = [];
+        $questionData['targetNumber'] = mt_rand(MIN_VALUE, MAX_VALUE);
+        
+        return $questionData;
     };
+    
+    $getQuestionMessageBody = function (array $questionData): string {
 
+        return "{$questionData['targetNumber']}";
+    };
+    
     $isPrime = function (int $number): bool {
         if ($number === 1) {
             return false;
@@ -32,15 +34,17 @@ function initGame(): array
         return true;
     };
 
-    $makeQuestion = function () use ($getAnswerAsWord, $isPrime): string {
-        $targetNumber = generateNumber(MIN_VALUE, MAX_VALUE);
+    $getCorrectAnswer = function (array $questionData) use ($isPrime): string {
+        if ($isPrime($questionData['targetNumber'])) {
+            return 'yes';
+        }
 
-        showMessage(MESSAGE['question'], (string)$targetNumber);
-
-        return $getAnswerAsWord($targetNumber, $isPrime);
+        return 'no';
     };
 
-    $gameData['makeQuestion'] = $makeQuestion;
+    $gameData['getQuestionData'] = $getQuestionData;
+    $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
+    $gameData['getCorrectAnswer'] = $getCorrectAnswer;
     $gameData['instructions'] = INSTRUCTIONS;
 
     return $gameData;

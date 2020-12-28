@@ -3,23 +3,16 @@
 namespace Brain\Game\Progression;
 
 use function Brain\Common\Engine\runGame;
-use function Brain\Common\Helpers\{showMessage, generateNumber};
 
-use const Brain\Game\Progression\{MIN_VALUE, MAX_VALUE, INSTRUCTIONS, PROGRESSION_SIZE, PROGRESSION_STEP};
 use const Brain\Common\Settings\MESSAGE;
 
 function initGame(): array
 {
-    $generateNumberFromList = function (array $numbersList): int {
-        $index = mt_rand(0, count($numbersList) - 1);
-        return $numbersList[$index];
-    };
+    $generateProgression = function (): array {
+        $progressionSize = mt_rand(MIN_PROGRESSION_SIZE, MAX_PROGRESSION_SIZE);
+        $progressionStep = mt_rand(MIN_PROGRESSION_STEP, MAX_PROGRESSION_STEP);
 
-    $getRandomProgression = function () use ($generateNumberFromList): array {
-        $progressionSize = $generateNumberFromList(PROGRESSION_SIZE);
-        $progressionStep = $generateNumberFromList(PROGRESSION_STEP);
-
-        $initValue = generateNumber(MIN_VALUE, MAX_VALUE);
+        $initValue = mt_rand(MIN_VALUE, MAX_VALUE);
 
         $progression = range($initValue, $initValue + ($progressionSize - 1) * $progressionStep, $progressionStep);
 
@@ -30,28 +23,41 @@ function initGame(): array
         return $progression;
     };
 
-    $getRandomElement = function (array $progression) use ($generateNumberFromList): int {
-        return $generateNumberFromList($progression);
+    $getRandomElement = function (array $progression): int {
+        $index = array_rand($progression);
+        return $progression[$index];
     };
 
+    $getQuestionData = function () use ($generateProgression, $getRandomElement): array {
+        $questionData = [];
+        $questionData['progression'] = $generateProgression();
+        $questionData['targetNumber'] = $getRandomElement($questionData['progression']);
+        
+        return $questionData;
+    };
+    
     $getShownProgression = function (array $progression, int $element): array {
         $index = array_search($element, $progression);
         $progression[$index] = '..';
 
         return $progression;
     };
-
-    $makeQuestion = function () use ($getRandomProgression, $getRandomElement, $getShownProgression): int {
-        $progression = $getRandomProgression();
-        $targetNumber = $getRandomElement($progression);
+    
+    $getQuestionMessageBody = function (array $questionData) use ($getShownProgression): string {
+        ['progression' => $progression, 'targetNumber' => $targetNumber] = $questionData;
         $shownProgression = $getShownProgression($progression, $targetNumber);
-
-        showMessage(MESSAGE['question'], implode(" ", $shownProgression));
-
-        return $targetNumber;
+        
+        return implode(" ", $shownProgression);
+    };
+    
+    $getCorrectAnswer = function(array $questionData): int {
+    
+        return $questionData['targetNumber'];
     };
 
-    $gameData['makeQuestion'] = $makeQuestion;
+    $gameData['getQuestionData'] = $getQuestionData;
+    $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
+    $gameData['getCorrectAnswer'] = $getCorrectAnswer;
     $gameData['instructions'] = INSTRUCTIONS;
 
     return $gameData;
