@@ -32,26 +32,26 @@ function initGame(): array
         $questionData = [];
         $questionData['progression'] = $generateProgression();
         $questionData['targetNumber'] = $getRandomElement($questionData['progression']);
-        
+
         return $questionData;
     };
-    
+
     $getShownProgression = function (array $progression, int $element): array {
         $index = array_search($element, $progression);
         $progression[$index] = '..';
 
         return $progression;
     };
-    
+
     $getQuestionMessageBody = function (array $questionData) use ($getShownProgression): string {
         ['progression' => $progression, 'targetNumber' => $targetNumber] = $questionData;
         $shownProgression = $getShownProgression($progression, $targetNumber);
-        
+
         return implode(" ", $shownProgression);
     };
-    
-    $getCorrectAnswer = function(array $questionData): int {
-    
+
+    $getCorrectAnswer = function (array $questionData): int {
+
         return $questionData['targetNumber'];
     };
 

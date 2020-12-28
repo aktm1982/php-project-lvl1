@@ -11,15 +11,15 @@ function initGame(): array
     $getQuestionData = function (): array {
         $questionData = [];
         $questionData['targetNumber'] = mt_rand(MIN_VALUE, MAX_VALUE);
-        
+
         return $questionData;
     };
-    
+
     $getQuestionMessageBody = function (array $questionData): string {
 
         return "{$questionData['targetNumber']}";
     };
-    
+
     $isPrime = function (int $number): bool {
         if ($number === 1) {
             return false;

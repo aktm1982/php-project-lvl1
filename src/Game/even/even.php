@@ -11,20 +11,20 @@ function initGame(): array
     $getQuestionData = function (): array {
         $questionData = [];
         $questionData['targetNumber'] = mt_rand(MIN_VALUE, MAX_VALUE);
-        
+
         return $questionData;
     };
-    
+
     $getQuestionMessageBody = function (array $questionData): string {
 
         return "{$questionData['targetNumber']}";
     };
-    
+
     $isEven = function (int $number): bool {
 
         return $number % 2 === 0;
     };
-    
+
     $getCorrectAnswer = function (array $questionData) use ($isEven): string {
         if ($isEven($questionData['targetNumber'])) {
             return 'yes';

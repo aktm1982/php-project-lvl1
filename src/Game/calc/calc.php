@@ -26,10 +26,12 @@ function initGame(): array
         $result = 0;
 
         switch ($questionData['operator']) {
-            case '+': $result = $questionData['operand1'] + $questionData['operand2'];
-                      break;
-            case '-': $result = $questionData['operand1'] - $questionData['operand2'];
-                      break;
+            case '+':
+                $result = $questionData['operand1'] + $questionData['operand2'];
+                break;
+            case '-':
+                $result = $questionData['operand1'] - $questionData['operand2'];
+                break;
         }
 
         return $result;

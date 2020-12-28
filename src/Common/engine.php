@@ -35,7 +35,7 @@ function runGame(array $gameData): void
 
         showMessage(MESSAGE['correct']);
         $roundWins[] = $roundResult['check'];
-        
+
         if (count($roundWins) === ROUNDS_COUNT) {
             showMessage(MESSAGE['congrats'], $user);
             break;
