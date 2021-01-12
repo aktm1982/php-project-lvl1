@@ -4,8 +4,6 @@ namespace Brain\Game\Prime;
 
 use function Brain\Engine\runGame;
 
-use const Brain\Engine\MESSAGE;
-
 function initGame(): array
 {
     $getQuestionData = function (): array {

@@ -4,8 +4,6 @@ namespace Brain\Game\Progression;
 
 use function Brain\Engine\runGame;
 
-use const Brain\Engine\MESSAGE;
-
 function initGame(): array
 {
     $generateProgression = function (): array {

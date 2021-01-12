@@ -4,7 +4,7 @@ namespace Brain\Engine;
 
 const ROUNDS_COUNT = 3;
 
-const MESSAGE      = [
+const MESSAGES     = [
     'welcome' => 'Welcome to the Brain games!',
     'hello' => 'Hello, %s',
     'question' => 'Question: %s',

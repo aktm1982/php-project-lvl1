@@ -4,34 +4,30 @@ namespace Brain\Engine;
 
 function runGame(array $gameData): void
 {
-    showMessage(MESSAGE['welcome']);
+    showMessage(MESSAGES['welcome']);
     $user = getUserInput('May I have your name?');
-    showMessage(MESSAGE['hello'], $user);
+    showMessage(MESSAGES['hello'], $user);
     showMessage($gameData['instructions']);
 
-    $roundWins = [];
-
-    while (true) {
+    for($roundNum = 1; $roundNum <= ROUNDS_COUNT; $roundNum++){
         $questionData = $gameData['getQuestionData']();
-        showMessage(MESSAGE['question'], $gameData['getQuestionMessageBody']($questionData));
+        showMessage(MESSAGES['question'], $gameData['getQuestionMessageBody']($questionData));
 
         $roundResult = [];
         $roundResult['correctAnswer'] = $gameData['getCorrectAnswer']($questionData);
-        $roundResult['userInput'] = getUserInput(MESSAGE['prompt']);
+        $roundResult['userInput'] = getUserInput(MESSAGES['prompt']);
 
         $roundResult['check'] = $roundResult['correctAnswer'] == $roundResult['userInput'];
-
         if (!$roundResult['check']) {
-            showMessage(MESSAGE['incorrect'], $roundResult['userInput'], $roundResult['correctAnswer']);
-            showMessage(MESSAGE['try'], $user);
+            showMessage(MESSAGES['incorrect'], $roundResult['userInput'], $roundResult['correctAnswer']);
+            showMessage(MESSAGES['try'], $user);
             break;
         }
 
-        showMessage(MESSAGE['correct']);
-        $roundWins[] = $roundResult['check'];
+        showMessage(MESSAGES['correct']);
 
-        if (count($roundWins) === ROUNDS_COUNT) {
-            showMessage(MESSAGE['congrats'], $user);
+        if ($roundNum === ROUNDS_COUNT) {
+            showMessage(MESSAGES['congrats'], $user);
             break;
         }
     }
