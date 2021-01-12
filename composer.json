@@ -12,9 +12,9 @@
     "autoload": {
         "files": [
             "src/Cli.php",
-            "src/Common/helpers.php",
-            "src/Common/engine.php",
-            "src/Common/settings.php",
+            "src/Engine/helpers.php",
+            "src/Engine/engine.php",
+            "src/Engine/settings.php",
             "src/Game/calc/calc.php",
             "src/Game/calc/settings.php",
             "src/Game/even/even.php",

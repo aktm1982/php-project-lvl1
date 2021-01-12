@@ -1,12 +1,6 @@
 <?php
 
-namespace Brain\Common\Engine;
-
-use function Brain\Common\Helpers\showMessage;
-use function Brain\Common\Helpers\getUserInput;
-
-use const Brain\Common\Settings\MESSAGE;
-use const Brain\Common\Settings\ROUNDS_COUNT;
+namespace Brain\Engine;
 
 function runGame(array $gameData): void
 {

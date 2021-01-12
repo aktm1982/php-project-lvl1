@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Common\Settings;
+namespace Brain\Engine;
 
 const ROUNDS_COUNT = 3;
 

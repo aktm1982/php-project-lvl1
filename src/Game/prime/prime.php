@@ -2,9 +2,9 @@
 
 namespace Brain\Game\Prime;
 
-use function Brain\Common\Engine\runGame;
+use function Brain\Engine\runGame;
 
-use const Brain\Common\Settings\MESSAGE;
+use const Brain\Engine\MESSAGE;
 
 function initGame(): array
 {
