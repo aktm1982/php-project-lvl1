@@ -9,7 +9,7 @@ function runGame(array $gameData): void
     showMessage(MESSAGES['hello'], $user);
     showMessage($gameData['instructions']);
 
-    for($roundNum = 1; $roundNum <= ROUNDS_COUNT; $roundNum++){
+    for ($roundNum = 1; $roundNum <= ROUNDS_COUNT; $roundNum++) {
         $questionData = $gameData['getQuestionData']();
         showMessage(MESSAGES['question'], $gameData['getQuestionMessageBody']($questionData));
 
