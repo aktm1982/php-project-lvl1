@@ -13,22 +13,17 @@ function runGame(array $gameData): void
         $questionData = $gameData['getQuestionData']();
         showMessage(MESSAGES['question'], $gameData['getQuestionMessageBody']($questionData));
 
-        $roundResult = [];
-        $roundResult['correctAnswer'] = $gameData['getCorrectAnswer']($questionData);
-        $roundResult['userInput'] = getUserInput(MESSAGES['prompt']);
+        $correctAnswer = $gameData['getCorrectAnswer']($questionData);
+        $userInput = getUserInput(MESSAGES['prompt']);
 
-        $roundResult['check'] = $roundResult['correctAnswer'] == $roundResult['userInput'];
-        if (!$roundResult['check']) {
-            showMessage(MESSAGES['incorrect'], $roundResult['userInput'], $roundResult['correctAnswer']);
+        if ($correctAnswer !== $userInput) {
+            showMessage(MESSAGES['incorrect'], $userInput, $correctAnswer);
             showMessage(MESSAGES['try'], $user);
-            break;
+            exit;
         }
 
         showMessage(MESSAGES['correct']);
-
-        if ($roundNum === ROUNDS_COUNT) {
-            showMessage(MESSAGES['congrats'], $user);
-            break;
-        }
     }
+
+    showMessage(MESSAGES['congrats'], $user);
 }
