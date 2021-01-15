@@ -5,7 +5,7 @@ namespace Brain\Engine;
 function runGame(array $gameData): void
 {
     showMessage(MESSAGES['welcome']);
-    $user = getUserInput('May I have your name?');
+    $user = getUserInput(MESSAGES['name']);
     showMessage(MESSAGES['hello'], $user);
     showMessage($gameData['instructions']);
 
