@@ -16,7 +16,7 @@ function runGame(array $gameData): void
         $correctAnswer = $gameData['getCorrectAnswer']($questionData);
         $userInput = getUserInput(MESSAGES['prompt']);
 
-        if ($correctAnswer !== $userInput) {
+        if ($correctAnswer != $userInput) {
             showMessage(MESSAGES['incorrect'], $userInput, $correctAnswer);
             showMessage(MESSAGES['try'], $user);
             exit;
