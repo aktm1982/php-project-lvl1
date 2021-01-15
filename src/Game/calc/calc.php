@@ -20,7 +20,7 @@ function initGame(): array
         return "$operand1 $operator $operand2";
     };
 
-    $getCorrectAnswer = function (array $questionData) use ($getQuestionMessageBody): int {
+    $getCorrectAnswer = function (array $questionData): int {
         $result = 0;
 
         switch ($questionData['operator']) {
@@ -35,6 +35,7 @@ function initGame(): array
         return $result;
     };
 
+    $gameData = [];
     $gameData['getQuestionData'] = $getQuestionData;
     $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
     $gameData['getCorrectAnswer'] = $getCorrectAnswer;

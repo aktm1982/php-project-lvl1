@@ -14,7 +14,7 @@ function initGame(): array
 
         $progression = range($initValue, $initValue + ($progressionSize - 1) * $progressionStep, $progressionStep);
 
-        if ($reversed = mt_rand(0, 1)) {
+        if ((bool)$reversed = mt_rand(0, 1)) {
             $progression = array_reverse($progression);
         }
 
@@ -35,7 +35,7 @@ function initGame(): array
     };
 
     $getShownProgression = function (array $progression, int $element): array {
-        $index = array_search($element, $progression);
+        $index = array_search($element, $progression, false);
         $progression[$index] = '..';
 
         return $progression;
@@ -53,6 +53,7 @@ function initGame(): array
         return $questionData['targetNumber'];
     };
 
+    $gameData = [];
     $gameData['getQuestionData'] = $getQuestionData;
     $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
     $gameData['getCorrectAnswer'] = $getCorrectAnswer;

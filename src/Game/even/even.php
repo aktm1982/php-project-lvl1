@@ -31,6 +31,7 @@ function initGame(): array
         return 'no';
     };
 
+    $gameData = [];
     $gameData['getQuestionData'] = $getQuestionData;
     $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
     $gameData['getCorrectAnswer'] = $getCorrectAnswer;

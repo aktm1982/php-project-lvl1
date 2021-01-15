@@ -38,6 +38,7 @@ function initGame(): array
         return max(array_intersect($divs1, $divs2));
     };
 
+    $gameData = [];
     $gameData['getQuestionData'] = $getQuestionData;
     $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
     $gameData['getCorrectAnswer'] = $getCorrectAnswer;
