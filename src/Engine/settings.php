@@ -6,7 +6,7 @@ const ROUNDS_COUNT = 3;
 
 const MESSAGES     = [
     'welcome' => 'Welcome to the Brain games!',
-    'name' => 'May I have your name',
+    'name' => 'May I have your name?',
     'hello' => 'Hello, %s',
     'question' => 'Question: %s',
     'prompt' => 'Your answer',
