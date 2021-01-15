@@ -8,17 +8,18 @@
 
 name: hexlet-check
 
+name: hexlet-check
 on:
   push:
     branches:
       - '**'
-
+    tags:
+      - '**'
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
