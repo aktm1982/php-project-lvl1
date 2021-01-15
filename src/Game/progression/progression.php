@@ -35,7 +35,7 @@ function initGame(): array
     };
 
     $getShownProgression = function (array $progression, int $element): array {
-        $index = array_search($element, $progression, false);
+        $index = array_search($element, $progression, true);
         $progression[$index] = '..';
 
         return $progression;
