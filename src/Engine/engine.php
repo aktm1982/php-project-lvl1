@@ -4,16 +4,18 @@ namespace Brain\Engine;
 
 function runGame(array $gameData): void
 {
+    ['getQuestionData' => $getQuestionData, 'getQuestionMessageBody' => $getQuestionMessageBody, 'getCorrectAnswer' => $getCorrectAnswer, 'instructions' => $instructions] = $gameData;
+    
     showMessage(MESSAGES['welcome']);
     $user = getUserInput(MESSAGES['name']);
     showMessage(MESSAGES['hello'], $user);
-    showMessage($gameData['instructions']);
+    showMessage($instructions);
 
-    for ($roundNum = 1; $roundNum <= ROUNDS_COUNT; $roundNum++) {
-        $questionData = $gameData['getQuestionData']();
-        showMessage(MESSAGES['question'], $gameData['getQuestionMessageBody']($questionData));
+    for ($roundNum = 0; $roundNum < ROUNDS_COUNT; $roundNum++) {
+        $questionData = $getQuestionData();
+        showMessage(MESSAGES['question'], $getQuestionMessageBody($questionData));
 
-        $correctAnswer = $gameData['getCorrectAnswer']($questionData);
+        $correctAnswer = $getCorrectAnswer($questionData);
         $userInput = getUserInput(MESSAGES['prompt']);
 
         if ($correctAnswer != $userInput) {
