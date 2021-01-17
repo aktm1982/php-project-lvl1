@@ -4,7 +4,7 @@ namespace Brain\Game\Even;
 
 use function Brain\Engine\runGame;
 
-function initGame(): array
+function play(): void
 {
     $getQuestionData = function (): array {
         $questionData = [];
@@ -30,18 +30,17 @@ function initGame(): array
 
         return NEG_ANSWER;
     };
+    
+    $initGameData = function() use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
+        $questionData = $getQuestionData();
+    
+        $gameData = [];
+        $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
+        $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
+        $gameData['instructions'] = INSTRUCTIONS;
+    
+        return $gameData;
+    };
 
-    $gameData = [];
-    $gameData['getQuestionData'] = $getQuestionData;
-    $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
-    $gameData['getCorrectAnswer'] = $getCorrectAnswer;
-    $gameData['instructions'] = INSTRUCTIONS;
-
-    return $gameData;
-}
-
-function play(): void
-{
-    $gameData = initGame();
-    runGame($gameData);
+    runGame($initGameData);
 }

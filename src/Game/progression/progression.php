@@ -4,12 +4,12 @@ namespace Brain\Game\Progression;
 
 use function Brain\Engine\runGame;
 
-function initGame(): array
+function play(): void
 {
     $randomReverse = function (array $progression): array {
         $reverseChance = mt_rand(1, 100);
 
-        return $reverseChance > REVERSE_THRESHOLD ? array_reverse($progression) : $progression;
+        return $reverseChance > REVERSE_CHANSE_THRESHOLD ? array_reverse($progression) : $progression;
     };
 
     $generateProgression = function () use ($randomReverse): array {
@@ -50,22 +50,22 @@ function initGame(): array
         return implode(" ", $shownProgression);
     };
 
-    $getCorrectAnswer = function (array $questionData): int {
-
-        return $questionData['targetNumber'];
+    $getCorrectAnswer = function (array $questionData): string {
+        $targetNumber = $questionData['targetNumber'];
+        
+        return (string)$targetNumber;
     };
 
-    $gameData = [];
-    $gameData['getQuestionData'] = $getQuestionData;
-    $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
-    $gameData['getCorrectAnswer'] = $getCorrectAnswer;
-    $gameData['instructions'] = INSTRUCTIONS;
+    $initGameData = function() use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
+        $questionData = $getQuestionData();
+    
+        $gameData = [];
+        $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
+        $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
+        $gameData['instructions'] = INSTRUCTIONS;
+    
+        return $gameData;
+    };
 
-    return $gameData;
-}
-
-function play(): void
-{
-    $gameData = initGame();
-    runGame($gameData);
-}
+    runGame($initGameData);
+};

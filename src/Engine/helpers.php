@@ -10,7 +10,7 @@ function showMessage(string $message, string ...$args): void
     line($message, ...$args);
 }
 
-function getUserInput(string $promptComment = " "): string
+function getUserInput(string $promptComment): string
 {
     return prompt($promptComment);
 }

@@ -4,7 +4,7 @@ namespace Brain\Game\Gcd;
 
 use function Brain\Engine\runGame;
 
-function initGame(): array
+function play(): void
 {
     $getQuestionData = function (): array {
         $questionData = [];
@@ -30,25 +30,26 @@ function initGame(): array
         return $divs;
     };
 
-    $getCorrectAnswer = function (array $questionData) use ($getDivs): int {
+    $getCorrectAnswer = function (array $questionData) use ($getDivs): string {
 
         $divs1 = $getDivs($questionData['number1']);
         $divs2 = $getDivs($questionData['number2']);
 
-        return max(array_intersect($divs1, $divs2));
+        $maxDiv = max(array_intersect($divs1, $divs2));
+
+        return (string)$maxDiv;
     };
 
-    $gameData = [];
-    $gameData['getQuestionData'] = $getQuestionData;
-    $gameData['getQuestionMessageBody'] = $getQuestionMessageBody;
-    $gameData['getCorrectAnswer'] = $getCorrectAnswer;
-    $gameData['instructions'] = INSTRUCTIONS;
+    $initGameData = function() use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
+        $questionData = $getQuestionData();
+    
+        $gameData = [];
+        $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
+        $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
+        $gameData['instructions'] = INSTRUCTIONS;
+    
+        return $gameData;
+    };
 
-    return $gameData;
-}
-
-function play(): void
-{
-    $gameData = initGame();
-    runGame($gameData);
+    runGame($initGameData);
 }
