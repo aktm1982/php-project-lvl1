@@ -6,7 +6,7 @@ const MAX_VALUE                = 100;
 
 const MIN_PROGRESSION_SIZE     = 5;
 const MAX_PROGRESSION_SIZE     = 10;
- 
+
 const MIN_PROGRESSION_STEP     = 2;
 const MAX_PROGRESSION_STEP     = 10;
 const MIN_VALUE                = 1;
