@@ -11,7 +11,7 @@ function play(): void
         $questionData['operand1'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
         $questionData['operand2'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
         $questionData['operator'] = OPERATORS[array_rand(OPERATORS)];
-    
+
         return $questionData;
     };
 
@@ -34,17 +34,17 @@ function play(): void
 
         return (string)$result;
     };
-    
-    $initGameData = function() use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
+
+    $initGameData = function () use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
         $questionData = $getQuestionData();
-    
+
         $gameData = [];
         $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
         $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
         $gameData['instructions'] = INSTRUCTIONS;
-    
+
         return $gameData;
     };
 
     runGame($initGameData);
-};
+}

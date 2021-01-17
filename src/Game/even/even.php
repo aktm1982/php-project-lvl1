@@ -30,15 +30,15 @@ function play(): void
 
         return NEG_ANSWER;
     };
-    
-    $initGameData = function() use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
+
+    $initGameData = function () use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
         $questionData = $getQuestionData();
-    
+
         $gameData = [];
         $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
         $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
         $gameData['instructions'] = INSTRUCTIONS;
-    
+
         return $gameData;
     };
 

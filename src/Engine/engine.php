@@ -2,7 +2,7 @@
 
 namespace Brain\Engine;
 
-function runGame(callable $initGameData): void
+function runGame($initGameData): void
 {
     showMessage(MESSAGES['welcome']);
     $user = getUserInput(MESSAGES['name']);
@@ -18,7 +18,7 @@ function runGame(callable $initGameData): void
         if ($roundNum === 0) {
             showMessage($instructions);
         }
- 
+
         showMessage(MESSAGES['question'], $questionMessageBody);
 
         $userInput = getUserInput(MESSAGES['prompt']);
