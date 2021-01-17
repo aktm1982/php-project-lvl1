@@ -6,7 +6,13 @@ use function Brain\Engine\runGame;
 
 function initGame(): array
 {
-    $generateProgression = function (): array {
+    $randomReverse = function(array $progression): array {
+        $reverseChance = mt_rand(1,100);
+
+        return $reverseChance > REVERSE_THRESHOLD ? array_reverse($progression) : $progression;
+    };
+
+    $generateProgression = function () use ($randomReverse): array {
         $progressionSize = mt_rand(MIN_PROGRESSION_SIZE, MAX_PROGRESSION_SIZE);
         $progressionStep = mt_rand(MIN_PROGRESSION_STEP, MAX_PROGRESSION_STEP);
 
@@ -14,11 +20,7 @@ function initGame(): array
 
         $progression = range($initValue, $initValue + ($progressionSize - 1) * $progressionStep, $progressionStep);
 
-        if ((bool)$reversed = mt_rand(0, 1)) {
-            $progression = array_reverse($progression);
-        }
-
-        return $progression;
+        return $randomReverse($progression);
     };
 
     $getRandomElement = function (array $progression): int {

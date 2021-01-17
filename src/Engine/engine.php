@@ -4,7 +4,12 @@ namespace Brain\Engine;
 
 function runGame(array $gameData): void
 {
-    ['getQuestionData' => $getQuestionData, 'getQuestionMessageBody' => $getQuestionMessageBody, 'getCorrectAnswer' => $getCorrectAnswer, 'instructions' => $instructions] = $gameData;
+    [
+        'getQuestionData' => $getQuestionData,
+        'getQuestionMessageBody' => $getQuestionMessageBody,
+        'getCorrectAnswer' => $getCorrectAnswer,
+        'instructions' => $instructions
+    ] = $gameData;
     
     showMessage(MESSAGES['welcome']);
     $user = getUserInput(MESSAGES['name']);

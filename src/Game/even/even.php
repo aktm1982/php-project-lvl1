@@ -25,10 +25,10 @@ function initGame(): array
 
     $getCorrectAnswer = function (array $questionData) use ($isEven): string {
         if ($isEven($questionData['targetNumber'])) {
-            return 'yes';
+            return POS_ANSWER;
         }
 
-        return 'no';
+        return NEG_ANSWER;
     };
 
     $gameData = [];

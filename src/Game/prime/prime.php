@@ -34,10 +34,10 @@ function initGame(): array
 
     $getCorrectAnswer = function (array $questionData) use ($isPrime): string {
         if ($isPrime($questionData['targetNumber'])) {
-            return 'yes';
+            return POS_ANSWER;
         }
 
-        return 'no';
+        return NEG_ANSWER;
     };
 
     $gameData = [];
