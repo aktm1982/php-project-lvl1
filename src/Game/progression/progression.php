@@ -6,8 +6,8 @@ use function Brain\Engine\runGame;
 
 function initGame(): array
 {
-    $randomReverse = function(array $progression): array {
-        $reverseChance = mt_rand(1,100);
+    $randomReverse = function (array $progression): array {
+        $reverseChance = mt_rand(1, 100);
 
         return $reverseChance > REVERSE_THRESHOLD ? array_reverse($progression) : $progression;
     };

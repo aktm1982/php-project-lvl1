@@ -10,7 +10,7 @@ function runGame(array $gameData): void
         'getCorrectAnswer' => $getCorrectAnswer,
         'instructions' => $instructions
     ] = $gameData;
-    
+
     showMessage(MESSAGES['welcome']);
     $user = getUserInput(MESSAGES['name']);
     showMessage(MESSAGES['hello'], $user);
