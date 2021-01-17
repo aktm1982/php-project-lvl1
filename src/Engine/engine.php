@@ -2,7 +2,7 @@
 
 namespace Brain\Engine;
 
-function runGame(array $initGameData): void
+function runGame(callable $initGameData): void
 {
     showMessage(MESSAGES['welcome']);
     $user = getUserInput(MESSAGES['name']);
