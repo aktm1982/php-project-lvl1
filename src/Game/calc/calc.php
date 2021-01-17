@@ -27,7 +27,7 @@ function play(): void
         return (string)$result;
     };
 
-    $getQuestionObject = function() use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array{
+    $getQuestionObject = function () use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array {
         $questionSrcData = $getQuestionSrcData();
 
         $questionObject = [];
