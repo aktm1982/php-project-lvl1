@@ -6,41 +6,40 @@ use function Brain\Engine\runGame;
 
 function play(): void
 {
-    $getQuestionData = function (): array {
-        $questionData = [];
-        $questionData['operand1'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $questionData['operand2'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $questionData['operator'] = OPERATORS[array_rand(OPERATORS)];
+    $getQuestionSrcData = function (): array {
+        $questionSrcData = [];
+        $questionSrcData['operand1'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
+        $questionSrcData['operand2'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
+        $questionSrcData['operator'] = OPERATORS[array_rand(OPERATORS)];
 
-        return $questionData;
+        return $questionSrcData;
     };
 
-    $getQuestionMessageBody = function (array $data): string {
+    $getQuestionString = function (array $data): string {
         ['operand1' => $operand1, 'operand2' => $operand2, 'operator' => $operator] = $data;
         return "$operand1 $operator $operand2";
     };
 
-    $getCorrectAnswer = function (array $data): string {
-        $result = 0;
-
-        switch ($data['operator']) {
-            case '+':
-                $result = $data['operand1'] + $data['operand2'];
-                break;
-            case '-':
-                $result = $data['operand1'] - $data['operand2'];
-                break;
-        }
+    $getCorrectAnswer = function (array $data) use ($getQuestionString): string {
+        $questionString = str_replace(' ', '', $getQuestionString($data));
+        $result = eval("return $questionString;");
 
         return (string)$result;
     };
 
-    $initGameData = function () use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
-        $questionData = $getQuestionData();
+    $getQuestionObject = function() use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array{
+        $questionSrcData = $getQuestionSrcData();
 
+        $questionObject = [];
+        $questionObject['questionString'] = $getQuestionString($questionSrcData);
+        $questionObject['correctAnswer'] = $getCorrectAnswer($questionSrcData);
+
+        return $questionObject;
+    };
+
+    $initGameData = function () use ($getQuestionObject): array {
         $gameData = [];
-        $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
-        $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
+        $gameData['getQuestionObject'] = $getQuestionObject;
         $gameData['instructions'] = INSTRUCTIONS;
 
         return $gameData;

@@ -4,22 +4,23 @@ namespace Brain\Engine;
 
 function runGame(callable $initGameData): void
 {
+    [
+        'instructions' => $instructions,
+        'getQuestionObject' => $getQuestionObject,
+    ] = $initGameData();
+
     showMessage(MESSAGES['welcome']);
     $user = getUserInput(MESSAGES['name']);
     showMessage(MESSAGES['hello'], $user);
+    showMessage($instructions);
 
     for ($roundNum = 0; $roundNum < ROUNDS_COUNT; $roundNum++) {
         [
-            'instructions' => $instructions,
-            'questionMessageBody' => $questionMessageBody,
-            'correctAnswer' => $correctAnswer
-        ] = $initGameData();
+            'questionString' => $questionString,
+            'correctAnswer' => $correctAnswer,
+        ] = $getQuestionObject();
 
-        if ($roundNum === 0) {
-            showMessage($instructions);
-        }
-
-        showMessage(MESSAGES['question'], $questionMessageBody);
+        showMessage(MESSAGES['question'], $questionString);
 
         $userInput = getUserInput(MESSAGES['prompt']);
         if ($correctAnswer !== $userInput) {
