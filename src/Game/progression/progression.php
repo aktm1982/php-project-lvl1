@@ -28,12 +28,12 @@ function play(): void
         return $progression[$index];
     };
 
-    $getQuestionData = function () use ($generateProgression, $getRandomElement): array {
-        $questionData = [];
-        $questionData['progression'] = $generateProgression();
-        $questionData['targetNumber'] = $getRandomElement($questionData['progression']);
+    $getQuestionSrcData = function () use ($generateProgression, $getRandomElement): array {
+        $questionSrcData = [];
+        $questionSrcData['progression'] = $generateProgression();
+        $questionSrcData['targetNumber'] = $getRandomElement($questionSrcData['progression']);
 
-        return $questionData;
+        return $questionSrcData;
     };
 
     $getShownProgression = function (array $progression, int $element): array {
@@ -43,25 +43,32 @@ function play(): void
         return $progression;
     };
 
-    $getQuestionMessageBody = function (array $questionData) use ($getShownProgression): string {
-        ['progression' => $progression, 'targetNumber' => $targetNumber] = $questionData;
+    $getQuestionString = function (array $questionSrcData) use ($getShownProgression): string {
+        ['progression' => $progression, 'targetNumber' => $targetNumber] = $questionSrcData;
         $shownProgression = $getShownProgression($progression, $targetNumber);
 
         return implode(" ", $shownProgression);
     };
 
-    $getCorrectAnswer = function (array $questionData): string {
-        $targetNumber = $questionData['targetNumber'];
+    $getCorrectAnswer = function (array $questionSrcData): string {
+        $targetNumber = $questionSrcData['targetNumber'];
 
         return (string)$targetNumber;
     };
 
-    $initGameData = function () use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
-        $questionData = $getQuestionData();
+    $getQuestionObject = function () use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array {
+        $questionSrcData = $getQuestionSrcData();
 
+        $questionObject = [];
+        $questionObject['questionString'] = $getQuestionString($questionSrcData);
+        $questionObject['correctAnswer'] = $getCorrectAnswer($questionSrcData);
+
+        return $questionObject;
+    };
+
+    $initGameData = function () use ($getQuestionObject): array {
         $gameData = [];
-        $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
-        $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
+        $gameData['getQuestionObject'] = $getQuestionObject;
         $gameData['instructions'] = INSTRUCTIONS;
 
         return $gameData;

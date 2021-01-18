@@ -6,16 +6,16 @@ use function Brain\Engine\runGame;
 
 function play(): void
 {
-    $getQuestionData = function (): array {
-        $questionData = [];
-        $questionData['targetNumber'] = mt_rand(MIN_VALUE, MAX_VALUE);
+    $getQuestionSrcData = function (): array {
+        $questionSrcData = [];
+        $questionSrcData['targetNumber'] = mt_rand(MIN_VALUE, MAX_VALUE);
 
-        return $questionData;
+        return $questionSrcData;
     };
 
-    $getQuestionMessageBody = function (array $questionData): string {
+    $getQuestionString = function (array $questionSrcData): string {
 
-        return "{$questionData['targetNumber']}";
+        return "{$questionSrcData['targetNumber']}";
     };
 
     $isPrime = function (int $number): bool {
@@ -40,12 +40,19 @@ function play(): void
         return NEG_ANSWER;
     };
 
-    $initGameData = function () use ($getQuestionData, $getQuestionMessageBody, $getCorrectAnswer): array {
-        $questionData = $getQuestionData();
+    $getQuestionObject = function () use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array {
+        $questionSrcData = $getQuestionSrcData();
 
+        $questionObject = [];
+        $questionObject['questionString'] = $getQuestionString($questionSrcData);
+        $questionObject['correctAnswer'] = $getCorrectAnswer($questionSrcData);
+
+        return $questionObject;
+    };
+
+    $initGameData = function () use ($getQuestionObject): array {
         $gameData = [];
-        $gameData['questionMessageBody'] = $getQuestionMessageBody($questionData);
-        $gameData['correctAnswer'] = $getCorrectAnswer($questionData);
+        $gameData['getQuestionObject'] = $getQuestionObject;
         $gameData['instructions'] = INSTRUCTIONS;
 
         return $gameData;
