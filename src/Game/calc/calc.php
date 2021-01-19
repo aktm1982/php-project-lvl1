@@ -6,25 +6,32 @@ use function Brain\Engine\runGame;
 
 function play(): void
 {
-    $getQuestionSrcData = function (): array {
-        $questionSrcData = [];
-        $questionSrcData['operand1'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $questionSrcData['operand2'] = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $questionSrcData['operator'] = OPERATORS[array_rand(OPERATORS)];
+    $calcs = [
+        '+' => (fn($x, $y) => $x + $y),
+        '-' => (fn($x, $y) => $x - $y),
+        '*' => (fn($x, $y) => $x * $y)
+    ];
+    
+    $getQuestionSrcData = function () use ($calcs): array {
+        $operand1 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
+        $operand2 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
+        $operatorSign = array_rand($calcs);
 
+        $questionSrcData = [];
+        $questionSrcData['questionString'] = "$operand1 $operatorSign $operand2";
+        $questionSrcData['result'] = $calcs[$operatorSign]($operand1, $operand2);
+        
         return $questionSrcData;
     };
 
     $getQuestionString = function (array $data): string {
-        ['operand1' => $operand1, 'operand2' => $operand2, 'operator' => $operator] = $data;
-        return "$operand1 $operator $operand2";
+       
+        return $data['questionString'];
     };
 
-    $getCorrectAnswer = function (array $data) use ($getQuestionString): string {
-        $questionString = str_replace(' ', '', $getQuestionString($data));
-        $result = eval("return $questionString;");
+    $getCorrectAnswer = function (array $data) use ($operations): string {
 
-        return (string)$result;
+        return (string)$data['result'];
     };
 
     $getQuestionObject = function () use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array {
