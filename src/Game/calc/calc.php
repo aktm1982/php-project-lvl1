@@ -11,7 +11,7 @@ function play(): void
         '-' => (fn($x, $y) => $x - $y),
         '*' => (fn($x, $y) => $x * $y)
     ];
-    
+
     $getQuestionSrcData = function () use ($calcs): array {
         $operand1 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
         $operand2 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
@@ -20,16 +20,16 @@ function play(): void
         $questionSrcData = [];
         $questionSrcData['questionString'] = "$operand1 $operatorSign $operand2";
         $questionSrcData['result'] = $calcs[$operatorSign]($operand1, $operand2);
-        
+
         return $questionSrcData;
     };
 
     $getQuestionString = function (array $data): string {
-       
+
         return $data['questionString'];
     };
 
-    $getCorrectAnswer = function (array $data) use ($operations): string {
+    $getCorrectAnswer = function (array $data): string {
 
         return (string)$data['result'];
     };
