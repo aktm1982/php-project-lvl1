@@ -2,12 +2,15 @@
 
 namespace Brain\Engine;
 
+use function cli\line;
+use function cli\prompt;
+
 function runGame(callable $getRoundData, string $instructions): void
 {
-    showMessage(MESSAGES['welcome']);
-    $user = getUserInput(MESSAGES['name']);
-    showMessage(MESSAGES['hello'], $user);
-    showMessage($instructions);
+    line(MESSAGES['welcome']);
+    $user = prompt(MESSAGES['name']);
+    line(MESSAGES['hello'], $user);
+    line($instructions);
 
     for ($roundNum = 0; $roundNum < ROUNDS_COUNT; $roundNum++) {
         [
@@ -15,17 +18,17 @@ function runGame(callable $getRoundData, string $instructions): void
             'correctAnswer' => $correctAnswer,
         ] = $getRoundData();
 
-        showMessage(MESSAGES['question'], $question);
+        line(MESSAGES['question'], $question);
 
-        $userInput = getUserInput(MESSAGES['prompt']);
+        $userInput = prompt(MESSAGES['prompt']);
         if ($correctAnswer !== $userInput) {
-            showMessage(MESSAGES['incorrect'], $userInput, $correctAnswer);
-            showMessage(MESSAGES['try'], $user);
+            line(MESSAGES['incorrect'], $userInput, $correctAnswer);
+            line(MESSAGES['try'], $user);
             exit;
         }
 
-        showMessage(MESSAGES['correct']);
+        line(MESSAGES['correct']);
     }
 
-    showMessage(MESSAGES['congrats'], $user);
+    line(MESSAGES['congrats'], $user);
 }

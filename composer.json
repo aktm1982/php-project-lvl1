@@ -12,7 +12,6 @@
     "autoload": {
         "files": [
             "src/Cli.php",
-            "src/Engine/helpers.php",
             "src/Engine/engine.php",
             "src/Engine/settings.php",
             "src/Games/calc/calc.php",
