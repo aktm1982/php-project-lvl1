@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Even;
+namespace Brain\Games\Even;
 
 use function Brain\Engine\runGame;
 
@@ -15,8 +15,8 @@ function play(): void
         $targetNumber = mt_rand(MIN_EVEN_GAME_VALUE, MAX_EVEN_GAME_VALUE);
 
         $roundData = [];
-        $roundData['roundQuestion'] = "$targetNumber";
-        $roundData['roundAnswer'] = isEven($targetNumber) ? POS_ANSWER : NEG_ANSWER;
+        $roundData['question'] = "$targetNumber";
+        $roundData['correctAnswer'] = isEven($targetNumber) ? POS_ANSWER : NEG_ANSWER;
 
         return $roundData;
     };

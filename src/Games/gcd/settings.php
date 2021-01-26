@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Gcd;
+namespace Brain\Games\Gcd;
 
 const MIN_DIVIDED_VALUE = 2;
 const MAX_DIVIDED_VALUE = 50;

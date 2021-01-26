@@ -15,16 +15,16 @@
             "src/Engine/helpers.php",
             "src/Engine/engine.php",
             "src/Engine/settings.php",
-            "src/Game/calc/calc.php",
-            "src/Game/calc/settings.php",
-            "src/Game/even/even.php",
-            "src/Game/even/settings.php",
-            "src/Game/gcd/gcd.php",
-            "src/Game/gcd/settings.php",
-            "src/Game/prime/prime.php",
-            "src/Game/prime/settings.php",
-            "src/Game/progression/progression.php",
-            "src/Game/progression/settings.php"
+            "src/Games/calc/calc.php",
+            "src/Games/calc/settings.php",
+            "src/Games/even/even.php",
+            "src/Games/even/settings.php",
+            "src/Games/gcd/gcd.php",
+            "src/Games/gcd/settings.php",
+            "src/Games/prime/prime.php",
+            "src/Games/prime/settings.php",
+            "src/Games/progression/progression.php",
+            "src/Games/progression/settings.php"
         ]
     },
     "bin": [

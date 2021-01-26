@@ -11,15 +11,15 @@ function runGame(callable $getRoundData, string $instructions): void
 
     for ($roundNum = 0; $roundNum < ROUNDS_COUNT; $roundNum++) {
         [
-            'roundQuestion' => $roundQuestion,
-            'roundAnswer' => $roundAnswer,
+            'question' => $question,
+            'correctAnswer' => $correctAnswer,
         ] = $getRoundData();
 
-        showMessage(MESSAGES['question'], $roundQuestion);
+        showMessage(MESSAGES['question'], $question);
 
         $userInput = getUserInput(MESSAGES['prompt']);
-        if ($roundAnswer !== $userInput) {
-            showMessage(MESSAGES['incorrect'], $userInput, $roundAnswer);
+        if ($correctAnswer !== $userInput) {
+            showMessage(MESSAGES['incorrect'], $userInput, $correctAnswer);
             showMessage(MESSAGES['try'], $user);
             exit;
         }

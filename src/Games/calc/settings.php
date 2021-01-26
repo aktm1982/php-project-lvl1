@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Calc;
+namespace Brain\Games\Calc;
 
 const MIN_OPERAND_VALUE = 1;
 const MAX_OPERAND_VALUE = 20;

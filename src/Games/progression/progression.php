@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Progression;
+namespace Brain\Games\Progression;
 
 use function Brain\Engine\runGame;
 
@@ -8,7 +8,7 @@ function randomReverse(array $progression): array
 {
     $reverseChance = mt_rand(1, 100);
 
-    return $reverseChance > REVERSE_CHANSE_THRESHOLD ? array_reverse($progression) : $progression;
+    return $reverseChance > REVERSE_CHANCE_THRESHOLD ? array_values(array_reverse($progression)) : $progression;
 }
 
 function generateProgression(): array
@@ -22,23 +22,22 @@ function generateProgression(): array
     return randomReverse($progression);
 }
 
-function getShownProgression(array $progression, int $index): array
+function getShownProgression(array $progression, int $index): string
 {
     $progression[$index] = '..';
 
-    return $progression;
+    return implode(" ", $progression);
 }
 
 function play(): void
 {
     $getRoundData = function (): array {
         $progression = generateProgression();
-        $targetIndex = (int)array_rand($progression);
-        $shownProgression = getShownProgression($progression, $targetIndex);
+        $targetIndex = array_rand($progression);
 
         $roundData = [];
-        $roundData['roundQuestion'] = implode(" ", $shownProgression);
-        $roundData['roundAnswer'] = (string)$progression[$targetIndex];
+        $roundData['question'] = getShownProgression($progression, $targetIndex);
+        $roundData['correctAnswer'] = (string)$progression[$targetIndex];
 
         return $roundData;
     };

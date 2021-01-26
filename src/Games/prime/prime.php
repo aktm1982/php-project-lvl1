@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Prime;
+namespace Brain\Games\Prime;
 
 use function Brain\Engine\runGame;
 
@@ -25,8 +25,8 @@ function play(): void
         $targetNumber = mt_rand(MIN_PRIME_GAME_VALUE, MAX_PRIME_GAME_VALUE);
 
         $roundData = [];
-        $roundData['roundQuestion'] = "$targetNumber";
-        $roundData['roundAnswer'] = isPrime($targetNumber) ? POS_ANSWER : NEG_ANSWER;
+        $roundData['question'] = "$targetNumber";
+        $roundData['correctAnswer'] = isPrime($targetNumber) ? POS_ANSWER : NEG_ANSWER;
 
         return $roundData;
     };

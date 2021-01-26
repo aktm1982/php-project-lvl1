@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Even;
+namespace Brain\Games\Even;
 
 const MIN_EVEN_GAME_VALUE    = 1;
 const MAX_EVEN_GAME_VALUE    = 200;

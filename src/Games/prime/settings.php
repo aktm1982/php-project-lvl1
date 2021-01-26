@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Game\Prime;
+namespace Brain\Games\Prime;
 
 const MIN_PRIME_GAME_VALUE    = 1;
 const MAX_PRIME_GAME_VALUE    = 100;
