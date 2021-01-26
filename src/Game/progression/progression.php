@@ -22,7 +22,7 @@ function generateProgression(): array
     return randomReverse($progression);
 }
 
-function getShownProgression(array $progression, int $index): array
+function getShownProgression(array $progression, string $index): array
 {
     $progression[$index] = '..';
 
