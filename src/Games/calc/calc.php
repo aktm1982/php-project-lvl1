@@ -4,7 +4,7 @@ namespace Brain\Games\Calc;
 
 use function Brain\Engine\runGame;
 
-function getOperations()
+function getOperations(): array
 {
     return [
         '+' => (fn($x, $y) => $x + $y),
@@ -24,7 +24,7 @@ function play(): void
 
         $operand1 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
         $operand2 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $operatorIndex = array_rand(getOperations());
+        $operatorIndex = (string)array_rand(getOperations());
 
         $roundData = [];
         $roundData['question'] = "$operand1 $operatorIndex $operand2";

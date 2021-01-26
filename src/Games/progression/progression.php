@@ -8,7 +8,7 @@ function randomReverse(array $progression): array
 {
     $reverseChance = mt_rand(1, 100);
 
-    return $reverseChance > REVERSE_CHANCE_THRESHOLD ? array_values(array_reverse($progression)) : $progression;
+    return $reverseChance > REVERSE_CHANCE_THRESHOLD ? array_reverse($progression) : $progression;
 }
 
 function generateProgression(): array
@@ -33,7 +33,7 @@ function play(): void
 {
     $getRoundData = function (): array {
         $progression = generateProgression();
-        $targetIndex = array_rand($progression);
+        $targetIndex = (int)array_rand($progression);
 
         $roundData = [];
         $roundData['question'] = getShownProgression($progression, $targetIndex);
