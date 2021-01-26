@@ -22,7 +22,7 @@ function isPrime(int $number): bool
 function play(): void
 {
     $getRoundData = function (): array {
-        $targetNumber = mt_rand(MIN_VALUE, MAX_VALUE);
+        $targetNumber = mt_rand(MIN_PRIME_GAME_VALUE, MAX_PRIME_GAME_VALUE);
 
         $roundData = [];
         $roundData['roundQuestion'] = "$targetNumber";

@@ -12,7 +12,7 @@ function isEven(int $number): bool
 function play(): void
 {
     $getRoundData = function (): array {
-        $targetNumber = mt_rand(MIN_VALUE, MAX_VALUE);
+        $targetNumber = mt_rand(MIN_EVEN_GAME_VALUE, MAX_EVEN_GAME_VALUE);
 
         $roundData = [];
         $roundData['roundQuestion'] = "$targetNumber";
