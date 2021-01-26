@@ -22,7 +22,7 @@ function generateProgression(): array
     return randomReverse($progression);
 }
 
-function getShownProgression(array $progression, string $index): array
+function getShownProgression(array $progression, int $index): array
 {
     $progression[$index] = '..';
 
@@ -33,7 +33,7 @@ function play(): void
 {
     $getRoundData = function (): array {
         $progression = generateProgression();
-        $targetIndex = array_rand($progression);
+        $targetIndex = (int)array_rand($progression);
         $shownProgression = getShownProgression($progression, $targetIndex);
 
         $roundData = [];
