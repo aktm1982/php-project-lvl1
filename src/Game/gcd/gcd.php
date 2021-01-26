@@ -18,7 +18,7 @@ function getDivs(int $num): array
 
 function play(): void
 {
-    $getRoundData = function () use ($getDivs): array {
+    $getRoundData = function (): array {
         $number1 = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
         $number2 = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
         $divs1 = getDivs($number1);

@@ -25,5 +25,5 @@ function play(): void
         return $roundData;
     };
 
-    runGame("getRoundData", INSTRUCTIONS);
+    runGame($getRoundData, INSTRUCTIONS);
 }

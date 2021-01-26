@@ -11,7 +11,7 @@ function isEven(int $number): bool
 
 function play(): void
 {
-    $getRoundData = function () use ($isEven): array {
+    $getRoundData = function (): array {
         $targetNumber = mt_rand(MIN_VALUE, MAX_VALUE);
 
         $roundData = [];
