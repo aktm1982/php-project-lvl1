@@ -5,7 +5,7 @@
 [![Actions Status](https://github.com/aktm1982/php-project-lvl1/workflows/phpcs-check/badge.svg)](https://github.com/aktm1982/php-project-lvl1/actions)
 
 ### CodeClimate status
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d087fcc098958ca20632/maintainability)](https://codeclimate.com/github/aktm1982/php-project-lvl1/maintainability)
 
 Brain-Even Game
 [![asciicast](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.png)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium)

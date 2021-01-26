@@ -6,19 +6,6 @@ use function Brain\Engine\runGame;
 
 function play(): void
 {
-    $getQuestionSrcData = function (): array {
-        $questionSrcData = [];
-        $questionSrcData['number1'] = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
-        $questionSrcData['number2'] = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
-
-        return $questionSrcData;
-    };
-
-    $getQuestionString = function (array $questionSrcData): string {
-        ['number1' => $number1, 'number2' => $number2] = $questionSrcData;
-        return "$number1 $number2";
-    };
-
     $getDivs = function (int $num): array {
         $divs = [];
         for ($i = 1; $i <= $num; $i++) {
@@ -30,33 +17,18 @@ function play(): void
         return $divs;
     };
 
-    $getCorrectAnswer = function (array $questionSrcData) use ($getDivs): string {
+    $getRoundData = function () use ($getDivs): array {
+        $number1 = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
+        $number2 = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
+        $divs1 = $getDivs($number1);
+        $divs2 = $getDivs($number2);
 
-        $divs1 = $getDivs($questionSrcData['number1']);
-        $divs2 = $getDivs($questionSrcData['number2']);
-
-        $maxDiv = max(array_intersect($divs1, $divs2));
-
-        return (string)$maxDiv;
+        $roundData = [];
+        $roundData['roundQuestion'] = "$number1 $number2";
+        $roundData['roundAnswer'] = (string)max(array_intersect($divs1, $divs2));
+    
+        return $roundData;
     };
 
-    $getQuestionObject = function () use ($getQuestionSrcData, $getQuestionString, $getCorrectAnswer): array {
-        $questionSrcData = $getQuestionSrcData();
-
-        $questionObject = [];
-        $questionObject['questionString'] = $getQuestionString($questionSrcData);
-        $questionObject['correctAnswer'] = $getCorrectAnswer($questionSrcData);
-
-        return $questionObject;
-    };
-
-    $initGameData = function () use ($getQuestionObject): array {
-        $gameData = [];
-        $gameData['getQuestionObject'] = $getQuestionObject;
-        $gameData['instructions'] = INSTRUCTIONS;
-
-        return $gameData;
-    };
-
-    runGame($initGameData);
+    runGame($getRoundData, INSTRUCTIONS);
 }
