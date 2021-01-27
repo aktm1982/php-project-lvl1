@@ -46,7 +46,7 @@ Brain-GCD game: "make brain-gcd"
 Brain-Progression game: "make brain-progression"
 [![asciicast](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.png)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17&size=medium)
 
-Brain-Prime game: "maKe brain-prime"
+Brain-Prime game: "make brain-prime"
 [![asciicast](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox.png)](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox?rows=17&size=medium)
 
 
