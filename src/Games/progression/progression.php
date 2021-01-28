@@ -22,11 +22,16 @@ function generateProgression(): array
     return randomReverse($progression);
 }
 
-function getShownProgression(array $progression, int $index): string
+function getQuestion(array $progression, int $targetIndex): string
 {
-    $progression[$index] = '..';
+    $progression[$targetIndex] = '..';
 
     return implode(" ", $progression);
+}
+
+function getCorrectAnswer(array $progression, int $targetIndex): string
+{
+    return (string)$progression[$targetIndex];
 }
 
 function play(): void
@@ -36,8 +41,8 @@ function play(): void
         $targetIndex = (int)array_rand($progression);
 
         $roundData = [];
-        $roundData['question'] = getShownProgression($progression, $targetIndex);
-        $roundData['correctAnswer'] = (string)$progression[$targetIndex];
+        $roundData['question'] = getQuestion($progression, $targetIndex);
+        $roundData['correctAnswer'] = getCorrectAnswer($progression, $targetIndex);
 
         return $roundData;
     };

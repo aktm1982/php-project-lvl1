@@ -4,24 +4,21 @@ namespace Brain\Games\Gcd;
 
 use function Brain\Engine\runGame;
 
-function getDivs(int $num): array
+function getQuestion(int $number1, int $number2): string
 {
-    $divs = [];
-    for ($i = 1; $i <= $num; $i++) {
-        if ($num % $i === 0) {
-            $divs[] = $i;
+    return "$number1 $number2";
+}
+
+function getCorrectAnswer(int $number1, int $number2): string
+{
+    $gcd = 1;
+    for($i = 1; $i < ($number1 / 2); $i++) {
+        if(($number1 % $i === 0) && ($number2 % $i === 0)) {
+            $gcd = $i;
         }
     }
 
-    return $divs;
-}
-
-function getGcd(int $number1, int $number2): string
-{
-    $divs1 = getDivs($number1);
-    $divs2 = getDivs($number2);
-
-    return (string)max(array_intersect($divs1, $divs2));
+    return (string)$gcd;
 }
 
 function play(): void
@@ -31,8 +28,8 @@ function play(): void
         $number2 = mt_rand(MIN_DIVIDED_VALUE, MAX_DIVIDED_VALUE);
 
         $roundData = [];
-        $roundData['question'] = "$number1 $number2";
-        $roundData['correctAnswer'] = getGcd($number1, $number2);
+        $roundData['question'] = getQuestion($number1, $number2);
+        $roundData['correctAnswer'] = getCorrectAnswer($number1, $number2);
 
         return $roundData;
     };

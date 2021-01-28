@@ -13,6 +13,11 @@ function getOperations(): array
     ];
 }
 
+function getQuestion(int $operand1, int $operand2, string $operatorIndex): string
+{
+    return "$operand1 $operatorIndex $operand2";
+}
+
 function getCorrectAnswer(int $operand1, int $operand2, string $operatorIndex): string
 {
     return (string)getOperations()[$operatorIndex]($operand1, $operand2);
@@ -24,10 +29,10 @@ function play(): void
 
         $operand1 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
         $operand2 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $operatorIndex = (string)array_rand(getOperations());
+        $operatorIndex = array_rand(getOperations());
 
         $roundData = [];
-        $roundData['question'] = "$operand1 $operatorIndex $operand2";
+        $roundData['question'] = getQuestion($operand1, $operand2, $operatorIndex);
         $roundData['correctAnswer'] = getCorrectAnswer($operand1, $operand2, $operatorIndex);
 
         return $roundData;

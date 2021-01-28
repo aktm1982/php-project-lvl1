@@ -18,12 +18,6 @@ Every game consists of three  rounds. To win the game you should give the correc
 If you give the wrong answer the game ends and you may try again with starting new game if you wish.
 
 
-System requirements
-------------
-- PHP version 7 or greater;
-- "make" utility for PHP.
-
-
 Installing
 ----------
 Clone repository from https://github.com/aktm1982/php-project-lvl1.git to any folder on your hard drive.
@@ -34,20 +28,37 @@ Playing the games
 -----------------
 To start the games use the following commands in terminal using "make" utility
 
-Brain-Even Game: "make brain-even"
-[![asciicast](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.png)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium)
+Brain-Even Game: 
+use command "make brain-even"
+[![asciicast](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.png)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium&autoplay=1)
 
-Brain-Calc Game: "make brain-calc"
-[![asciicast](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz.png)](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz?rows=17&size=medium)
+Brain-Calc Game: 
+use command "make brain-calc"
+[![asciicast](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz.png)](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz?rows=17&size=medium&autoplay=1)
 
-Brain-GCD game: "make brain-gcd"
-[![asciicast](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw.png)](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw?rows=17&size=medium)
+Brain-GCD game: 
+use command "make brain-gcd"
+[![asciicast](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw.png)](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw?rows=17&size=medium&autoplay=1)
 
-Brain-Progression game: "make brain-progression"
-[![asciicast](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.png)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17&size=medium)
+Brain-Progression game: 
+use command "make brain-progression"
+[![asciicast](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.png)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17&size=medium&autoplay=1)
 
-Brain-Prime game: "make brain-prime"
-[![asciicast](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox.png)](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox?rows=17&size=medium)
+Brain-Prime game: 
+use command "make brain-prime"
+[![asciicast](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox.png)](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox?rows=17&size=medium&autoplay=1)
+
+
+Adding new game
+---------------
+1. Create new directory in "src/Games" folder.
+2. Put new script file into this directory.
+3. Add instruction "use function Brain\Engine\runGame" just after "<?php" line in your script file.
+4. Add function recall "runGame()" to the end of your script.
+5. Now you should pass two arguments to the "runGame()" recall:
+   - array with two keys: "question" - the line wich will be shown as the question at the start of every round, "correctAnswer" - the correct answer which is assumed to be equal with the user input;
+   - instruction string which will be shown at the start of the game.
+6. Run your script and play the game.
 
 
 Deleting

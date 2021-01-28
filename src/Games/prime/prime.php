@@ -19,14 +19,24 @@ function isPrime(int $number): bool
     return true;
 }
 
+function getQuestion(int $targetNumber): string
+{
+    return "$targetNumber";
+}
+
+function getCorrectAnswer(int $targetNumber): string
+{
+    return isPrime($targetNumber) ? POS_ANSWER : NEG_ANSWER;
+}
+
 function play(): void
 {
     $getRoundData = function (): array {
         $targetNumber = mt_rand(MIN_PRIME_GAME_VALUE, MAX_PRIME_GAME_VALUE);
 
         $roundData = [];
-        $roundData['question'] = "$targetNumber";
-        $roundData['correctAnswer'] = isPrime($targetNumber) ? POS_ANSWER : NEG_ANSWER;
+        $roundData['question'] = getQuestion($targetNumber);
+        $roundData['correctAnswer'] = getCorrectAnswer($targetNumber);
 
         return $roundData;
     };
