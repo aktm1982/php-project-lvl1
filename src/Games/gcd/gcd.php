@@ -12,8 +12,8 @@ function getQuestion(int $number1, int $number2): string
 function getCorrectAnswer(int $number1, int $number2): string
 {
     $gcd = 1;
-    for($i = 1; $i < ($number1 / 2); $i++) {
-        if(($number1 % $i === 0) && ($number2 % $i === 0)) {
+    for ($i = 1; $i <= $number1; $i++) {
+        if (($number1 % $i === 0) && ($number2 % $i === 0)) {
             $gcd = $i;
         }
     }
