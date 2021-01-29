@@ -1,27 +1,9 @@
-<table>
-    <tr>
-        <th>
-            ### Hexlet tests and linter status:
-        </th>
-        <th>
-            ### PHP CodeSniffer check status:
-        </th>
-        <th>
-            ### CodeClimate status
-        </th>
-    </tr>
-    <tr>
-        <td>
-            [![Actions Status](https://github.com/aktm1982/php-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/aktm1982/php-project-lvl1/actions)
-        </td>
-        <td>
-            [![Actions Status](https://github.com/aktm1982/php-project-lvl1/workflows/phpcs-check/badge.svg)](https://github.com/aktm1982/php-project-lvl1/actions)
-        </td>
-        <td>
-            [![Maintainability](https://api.codeclimate.com/v1/badges/d087fcc098958ca20632/maintainability)](https://codeclimate.com/github/aktm1982/php-project-lvl1/maintainability)
-        </td>
-    </tr>
-</table>
+### Hexlet tests and linter status:
+[![Actions Status](https://github.com/aktm1982/php-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/aktm1982/php-project-lvl1/actions)
+### PHP CodeSniffer check status:
+[![Actions Status](https://github.com/aktm1982/php-project-lvl1/workflows/phpcs-check/badge.svg)](https://github.com/aktm1982/php-project-lvl1/actions)
+### CodeClimate status
+[![Maintainability](https://api.codeclimate.com/v1/badges/d087fcc098958ca20632/maintainability)](https://codeclimate.com/github/aktm1982/php-project-lvl1/maintainability)
 
 Brain Games
 ============
@@ -46,7 +28,7 @@ To start the games use the following commands in terminal using "make" utility
 
 Brain-Even Game: 
 use command "make brain-even"
-[![asciicast](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.png)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium&autoplay=1)
+[![demo](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q.svg)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium&autoplay=1)
 
 Brain-Calc Game: 
 use command "make brain-calc"
