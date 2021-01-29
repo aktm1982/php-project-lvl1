@@ -26,23 +26,23 @@ To start the games use the following commands in terminal using "make" utility
 
 Brain-Even Game: 
 use command "make brain-even"
-[![asciicast](examples/brain_even.svg)](https://asciinema.org/a/gyoJkGKpWGukXRa5Gqav41G2q?rows=17&size=medium&autoplay=1)
+[![asciicast](examples/brain_even.svg)](https://asciinema.org/a/yRkvtcNq3bBtxLcHsV0bBIL36?rows=17&size=medium&autoplay=1)
 
 Brain-Calc Game: 
 use command "make brain-calc"
-[![demo](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz.svg)](https://asciinema.org/a/f70AXYu6DI47S6ywZFkhQrRqz?rows=17&size=medium&autoplay=1)
+[![asciicast](examples/brain_calc.svg)](https://asciinema.org/a/G95RkHT1nbQqLzebYGbfuYevw?rows=17&size=medium&autoplay=1)
 
 Brain-GCD game: 
 use command "make brain-gcd"
-[![demo](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw.svg)](https://asciinema.org/a/FxjmTOvsQ3ij0qlt952JzorCw?rows=17&size=medium&autoplay=1)
-
-Brain-Progression game: 
-use command "make brain-progression"
-[![demo](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8.svg)](https://asciinema.org/a/c4VC4aqvGYIDQYULVclEFvXJ8?rows=17&size=medium&autoplay=1)
+[![asciicast](examples/brain_gcd.svg)](https://asciinema.org/a/YCuuCplmorwiAdxSoOi2qYFWZ?rows=17&size=medium&autoplay=1)
 
 Brain-Prime game: 
 use command "make brain-prime"
-[![demo](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox.svg)](https://asciinema.org/a/FIhRaEcFdh2TyLNZReZrMo1Ox?rows=17&size=medium&autoplay=1)
+[![asciicast](examples/brain_prime.svg)](https://asciinema.org/a/hFJCGVMoWwCxjLsRQvIZanvl6?rows=17&size=medium&autoplay=1)
+
+Brain-Progression game: 
+use command "make brain-progression"
+[![asciicast](examples/brain_progression.svg)](https://asciinema.org/a/ucjyBRUiyxC67dG8QBcIFLn5z?rows=17&size=medium&autoplay=1)
 
 
 Adding new game
