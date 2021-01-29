@@ -29,7 +29,7 @@ function play(): void
 
         $operand1 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
         $operand2 = mt_rand(MIN_OPERAND_VALUE, MAX_OPERAND_VALUE);
-        $operatorIndex = array_rand(getOperations());
+        $operatorIndex = (string)array_rand(getOperations());
 
         $roundData = [];
         $roundData['question'] = getQuestion($operand1, $operand2, $operatorIndex);
