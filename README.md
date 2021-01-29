@@ -17,7 +17,7 @@ Installing
 ----------
 Clone repository from https://github.com/aktm1982/php-project-lvl1.git to any folder on your hard drive.
 Switch to created folder and perform "make install" using terminal to install missing dependencies.
-[![asciicast](examples/make_install.svg)](https://asciinema.org/a/vJ4y9Wa1FNuan329qqoYLJroD?rows=17&size=medium&autoplay=1)
+[![asciicast](examples/make_install.svg)](https://asciinema.org/a/zhIiUAvGxZSg94cXVeFXjSFTX?rows=17&size=medium&autoplay=1)
 
 
 Playing the games
